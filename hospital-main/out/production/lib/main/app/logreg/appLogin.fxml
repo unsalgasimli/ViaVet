@@ -33,17 +33,17 @@
             </ImageView>
             <VBox id="vbox" fx:id="vbox" alignment="CENTER" fillWidth="false" maxWidth="600" maxHeight="800" style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 20;">
                <children>
-                  <Text id="text" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="VIAVET" textAlignment="CENTER" textOrigin="CENTER">
+                  <Text id="text" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="VIAVET" >
                      <font>
                         <Font size="68.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="50.0" top="100.0" />
+                        <Insets bottom="50.0" top="30.0" />
                      </VBox.margin>
                   </Text>
                   <TextField id="input-field" fx:id="idField" alignment="CENTER" promptText="ID">
                      <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="40.0" />
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Segoe UI" size="12.0" />

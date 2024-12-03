@@ -7,7 +7,7 @@
 
 /* Main container for the login form */
 #vbox {
-    -fx-border-radius: 25px;
+    -fx-border-radius: 15px;
     -fx-border-color: #FF4ED7; /* Neon pink to match the theme */
     -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
     -fx-pref-width: 45em;
@@ -24,7 +24,7 @@
 /* Hover effect for vbox */
 #vbox:hover {
     -fx-border-radius: 15px;
-    -fx-border-width: 3px;
+    -fx-border-width: 5px;
     -fx-border-color: #FF79F1; /* Subtle brighter pink on hover */
 }
 
@@ -35,7 +35,9 @@
     -fx-min-height: 3.5em;
     -fx-pref-width: 32em;
     -fx-min-width: 10em;
-    -fx-background-color: rgba(255, 255, 255, 0.1); /* Slight white transparent background */
+   /* -fx-background-color: rgba(255, 255, 255, 0.1); /* Slight white transparent background */
+
+    -fx-background-color: transparent;
     -fx-border-radius: 25px;
     -fx-border-color: #FF79F1; /* Bright pink border */
     -fx-font-family: "Segoe UI Black";
@@ -111,8 +113,16 @@
     -fx-font-size: 5em;
     -fx-fill: #FF4ED7; /* Brighter pink */
     -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 10, 0, 0, 5);
-    -fx-text-alignment: center;
+    -fx-text-alignment: top;
     -fx-text-origin: center;
+}
+
+#text:hover{
+    -fx-font-size: 5.5em;
+    -fx-fill: #ff3bc1; /* Brighter pink */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.6), 15, 0.2, 0, 7);
+
+
 }
 
 /* General hover effect for buttons */

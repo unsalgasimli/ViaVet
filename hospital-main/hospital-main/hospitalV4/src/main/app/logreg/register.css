@@ -1,86 +1,181 @@
-#vboxMain{
-    -fx-pref-width: 65em;
-    -fx-max-width: 65em;
+/* Main container for the register form */
+#vboxMain {
+    -fx-border-radius: 15px;
+    -fx-border-color: #FF4ED7; /* Neon pink to match the theme */
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 25px;
+    -fx-pref-width: 55em;
+    -fx-max-width: 55em;
+    -fx-min-width: 30em; /* Ensure minimum width for responsiveness */
     -fx-pref-height: 65em;
     -fx-max-height: 65em;
-    -fx-min-height: 35em;
-    -fx-border-radius: 15;
-    -fx-border-color: white;
-    -fx-border-width: 4;
-}
-#hbox{
-    -fx-pref-width: 65em;
-    -fx-max-width: 65em;
-    -fx-pref-height: 35em;
-    -fx-max-height: 35em;
-    -fx-min-height: 25em;
-}
-#vboxInsider{
-    -fx-pref-width: 30em;
-    -fx-max-width: 30em;
-    -fx-pref-height: 35em;
-    -fx-max-height: 35em;
-    -fx-min-height: 25em;
+    -fx-min-height: 40em; /* Adjusted minimum height */
+    -fx-padding: 6em 2em 2em 2em; /* Increase top padding */
+
+    -fx-alignment: TOP_CENTER;
+    -fx-fill-width: false;
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
 
 }
 
-#text{
-    -fx-font-family:"Trebuchet MS";
-    -fx-font-size: 5em;
-    -fx-font-scale: inherit;
+/* Hover effect for vbox */
+#vboxMain:hover {
+    -fx-border-radius: 15px;
+    -fx-border-width: 5px;
+    -fx-border-color: #FF79F1; /* Subtle brighter pink on hover */
 }
-#input-field{
-    -fx-pref-height: 5em;
-    -fx-min-height: 4em;
+
+/* Input field styling */
+#input-field, #datepicker {
+    -fx-padding: 12px 20px; /* Adjust padding for better proportion */
+    -fx-pref-height: 4em; /* Reduced height */
+    -fx-min-height: 3.5em;
     -fx-pref-width: 32em;
     -fx-min-width: 10em;
     -fx-background-color: transparent;
     -fx-border-radius: 25px;
-    -fx-border-color: white;
-    -fx-border-width: 2;
+    -fx-border-color: #FF79F1; /* Bright pink border */
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
+    -fx-font-size: 14px; /* Adjusted font size */
+    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
 }
-#input-field:hover{
-    -fx-scale-y: 1.05;
+
+/* Hover effect for input fields */
+#input-field:hover, #datepicker:hover {
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px; /* Fixed border radius */
     -fx-scale-x: 1.05;
-    -fx-border-width: 4;
-
-}
-#input-field:focused{
-    -fx-scale-x: 1;
-    -fx-scale-y: 1;
-    -fx-border-radius: 10;
-    -fx-border-width: 4;
+    -fx-scale-y: 1.05;
 }
 
+/* Focus effect for input fields */
+#input-field:focused, #datepicker:focused {
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-border-width: 3px;
+    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Register button styling */
 #logBtn{
-    -fx-background-radius: 10;
-    -fx-font-family: Constantia;
-    -fx-font-size:2em;
-    -fx-background-color:#C67BE7;
-    -fx-pref-width: 9em;
-    -fx-max-width: 9em;
-    -fx-pref-height: 2.5em;
-    -fx-max-height: 2.5em;
-    -fx-min-height: 1em;
-
+    -fx-background-radius: 25;
+    -fx-font-family: "Constantia";
+    -fx-font-size: 1.5em;
+    -fx-background-color: #FF4ED7; /* Neon pink background */
+    -fx-opacity: 0.9;
+    -fx-text-fill: white;
+    -fx-pref-height: 3.5em; /* Adjusted height */
+    -fx-pref-width: 15em; /* Adjusted width for better proportions */
 }
-#logBtn:hover{
+
+/* Hover effect for buttons */
+#logBtn:hover {
     -fx-background-color: transparent;
     -fx-border-color: white;
-    -fx-border-width: 1px;
+    -fx-border-width: 2px;
     -fx-border-radius: 25;
-    -fx-scale-x: 1.06;
-    -fx-scale-y: 1.06;
     -fx-text-fill: white;
 
 }
-#datepicker{
-    -fx-pref-height: 4em;
-    -fx-min-height: 4em;
-    -fx-pref-width: 30em;
-    -fx-min-width: 10em;
-    -fx-font-family: "Segoe UI Black";
-    -fx-text-fill: white;
+
+/* Title text styling */
+#text {
+    -fx-font-family: "Trebuchet MS";
+    -fx-font-size: 5em;
+    -fx-fill: #FF4ED7; /* Brighter pink */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 10, 0, 0, 5);
+    -fx-text-alignment: top;
+    -fx-text-origin: center;
 }
+
+/* Hover effect for title text */
+#text:hover {
+    -fx-font-size: 5.5em;
+    -fx-fill: #ff3bc1; /* Brighter pink */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.6), 15, 0.2, 0, 7);
+}
+
+/* General hover effect for buttons */
+button:hover {
+    -fx-cursor: hand;
+}
+
+/* General DatePicker styling */
+#date-picker {
+    -fx-background-color: #2c2f33; /* Background color */
+    -fx-text-fill: white; /* Text color */
+    -fx-border-color: #FF4ED7; /* Border color */
+    -fx-border-radius: 10px; /* Rounded border */
+    -fx-border-width: 2px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+/* Hover effect */
+#date-picker:hover {
+    -fx-border-color: #FF79F1; /* Brighter border on hover */
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Focus effect */
+#date-picker:focused {
+    -fx-border-color: #D44DFF; /* Purple focus border */
+    -fx-border-width: 3px;
+}
+
+
+
+/* Popup calendar container */
+#date-picker-popup {
+    -fx-background-color: #1e1e1e; /* Dark theme */
+    -fx-border-color: #FF4ED7;
+    -fx-border-radius: 10px;
+}
+
+/* Days in the calendar */
+#date-picker .calendar {
+    -fx-background-color: #2c2f33; /* Background for calendar */
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;
+}
+
+/* Day cell styling */
+#date-picker .calendar .day-cell {
+    -fx-text-fill: white; /* Text color */
+    -fx-background-color: transparent;
+}
+
+#date-picker .calendar .day-cell:hover {
+    -fx-background-color: #FF4ED7; /* Highlight on hover */
+    -fx-text-fill: black; /* Contrast text */
+}
+
+/* Selected day */
+#date-picker .calendar .day-cell:selected {
+    -fx-background-color: #FF4ED7; /* Highlight color */
+    -fx-text-fill: black; /* Text color for selected day */
+}
+/* Month/Year navigation buttons */
+#date-picker .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FF4ED7; /* Pink arrow color */
+    -fx-border-radius: 5px;
+    -fx-padding: 2px 5px;
+}
+
+/* Hover effect for navigation buttons */
+#date-picker .button:hover {
+    -fx-background-color: #FF79F1; /* Brighter hover background */
+    -fx-text-fill: black;
+}
+
+/* Disabled buttons */
+#date-picker .button:disabled {
+    -fx-text-fill: gray;
+    -fx-opacity: 0.5;
+}
+
