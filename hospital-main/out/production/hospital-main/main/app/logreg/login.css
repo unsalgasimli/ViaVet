@@ -1,0 +1,88 @@
+#login-pane {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+
+}
+#vbox{
+    -fx-border-radius: 25px;
+    -fx-border-color: white;
+    -fx-background-color: transparent;
+    -fx-pref-width: 45em;
+    -fx-max-width: 45em;
+    -fx-min-width: 5em;
+    -fx-pref-height: 50em;
+    -fx-max-height: 50em;
+    -fx-min-height: 8em;
+}
+#vbox:hover{
+    -fx-border-radius: 15px;
+    -fx-border-width: 3px;
+
+}
+
+#input-field {
+    -fx-padding: 30%;
+    -fx-pref-height: 5em;
+    -fx-min-height: 4em;
+    -fx-pref-width: 32em;
+    -fx-min-width: 10em;
+    -fx-background-color: transparent;
+    -fx-border-radius: 25px;
+    -fx-border-color: white;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: white;
+   -fx-font-size: 10px;
+}
+#input-field:hover{
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+
+}
+#input-field:focused{
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-border-color: #9563CC;
+    -fx-border-width:3px ;
+}
+#helpBtn{
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-color-label-visible: white;
+    -fx-text-fill: white;
+}
+#helpBtn:hover{
+    -fx-text-fill: #6041E6;
+
+}
+#logBtn{
+    -fx-background-radius: 25;
+    -fx-font-family: Constantia;
+    -fx-font-size:1.5em;
+    -fx-background-color:#C67BE7;
+    -fx-opacity: 0.8;
+
+}
+#logBtn:hover{
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+
+}
+#signupBtn{
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-font-family: Verdana;
+}
+#signupBtn:hover{
+    -fx-text-fill: #6041E6;
+
+}
+
+#text{
+    -fx-font-family:"Trebuchet MS";
+    -fx-font-size: 5em;
+    -fx-font-scale: inherit;
+}
+

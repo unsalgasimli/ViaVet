@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1536.0" stylesheets="@../../resources/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.app.patient.PatientAppointmentController">
+   <children>
+      <StackPane id="stackPane" onMouseClicked="#cancelSelection" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane id="borderPane" StackPane.alignment="CENTER">
+               <top>
+                  <HBox id="topHbox" alignment="CENTER" fillHeight="false" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button id="appointmentBtn" maxHeight="43.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="430.0" text="Appointment">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="historyBtn" mnemonicParsing="false" onAction="#openPatientHistory" text="History" />
+                        <Button id="infoBtn" mnemonicParsing="false" onAction="#openPatientInfo" text="Info" />
+                        <Button id="logoutBtn" mnemonicParsing="false" onAction="#logOut" text="Log Out">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </HBox>
+               </top>
+               <StackPane.margin>
+                  <Insets bottom="40.0" left="100.0" right="100.0" top="40.0" />
+               </StackPane.margin>
+               <center>
+                  <HBox id="botHbox" alignment="CENTER" fillHeight="false" prefHeight="878.0" prefWidth="1246.0" BorderPane.alignment="TOP_CENTER">
+                     <children>
+                        <TableView id="table-view" fx:id="AppointmentTable" layoutX="100.0" prefHeight="878.0" prefWidth="903.0" scaleShape="false">
+                           <columns>
+                              <TableColumn id="tableColumn" fx:id="tableColumnOne" maxWidth="294.4000747203827" minWidth="-1.0" prefWidth="294.4000747203827" text="Doctor" />
+                              <TableColumn id="tableColumn" fx:id="tableColumnTwo" prefWidth="139.19995123147964" text="Pet" />
+                              <TableColumn id="tableColumn" fx:id="tableColumnThree" prefWidth="120.79995727539062" text="Date" />
+                              <TableColumn id="tableColumn" fx:id="tableColumnFour" maxWidth="387.1999206542969" minWidth="-1.0" prefWidth="128.0" text="Time" />
+                              <TableColumn id="tableColumn" fx:id="tableColumnFive" prefWidth="130.4000244140625" text="Status" />
+                           </columns>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <effect>
+                              <InnerShadow choke="0.02" height="28.01" radius="15.844999999999999" width="37.37" />
+                           </effect>
+                        </TableView>
+                        <VBox id="rightVbox" alignment="CENTER" prefHeight="878.0" prefWidth="562.0">
+                           <children>
+                              <VBox id="insiderVbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <TextField id="descField" fx:id="descriptionField" alignment="CENTER" prefHeight="86.0" prefWidth="187.0" promptText="Description">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <DatePicker id="datePicker" fx:id="datePicker" promptText="Date">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </DatePicker>
+                                 </children>
+                                 <effect>
+                                    <DropShadow height="18.66" radius="8.245000000000001" spread="0.32" width="16.32" />
+                                 </effect>
+                              </VBox>
+                              <HBox id="insiderVbox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MenuButton id="menuBtn" fx:id="petMenu" mnemonicParsing="false" text="Pets">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </MenuButton>
+                                    <MenuButton id="menuBtn" fx:id="vetMenu" mnemonicParsing="false" text="Veteranerian">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </MenuButton>
+                                    <MenuButton id="menuBtn" fx:id="timeMenu" mnemonicParsing="false" onMouseClicked="#setTime" prefHeight="37.0" prefWidth="117.0" text="Time">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </MenuButton>
+                                 </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </HBox>
+                              <VBox id="insiderVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button id="selectionBtn" mnemonicParsing="false" onAction="#request" text="Request">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button id="selectionBtn" fx:id="appointmentDetailBtn" mnemonicParsing="false" text="Details">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button id="selectionBtn" fx:id="deleteAppointment" mnemonicParsing="false" text="Delete">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <HBox alignment="CENTER" prefHeight="53.0" prefWidth="450.0">
+                                       <children>
+                                          <Button id="selectionBtn" fx:id="acceptBtn" mnemonicParsing="false" text="Accept" visible="false">
+                                             <HBox.margin>
+                                                <Insets right="30.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button id="selectionBtn" fx:id="dismissBtn" mnemonicParsing="false" text="Dismiss" visible="false" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <padding>
+                        <Insets bottom="50.0" left="30.0" right="30.0" top="50.0" />
+                     </padding>
+                  </HBox>
+               </center>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </BorderPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@register.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.app.logreg.RegController">
+   <children>
+      <StackPane prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/registerBackgroundHD.png" />
+               </image>
+            </ImageView>
+            <VBox id="vboxMain" alignment="TOP_CENTER" prefHeight="650.0" prefWidth="350.0">
+               <children>
+                  <Text id="text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="49.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="40.0" />
+                     </VBox.margin>
+                     <effect>
+                        <Glow />
+                     </effect>
+                  </Text>
+                  <HBox id="hbox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox id="vboxInsider" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <TextField id="input-field" fx:id="nameRField" alignment="CENTER" promptText="NAME">
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField id="input-field" fx:id="mnameRField" alignment="CENTER" promptText="MIDDLE NAME">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="50.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <PasswordField id="input-field" fx:id="passwordRField" alignment="CENTER" promptText="PASSWORD">
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox id="vboxInsider" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <TextField id="input-field" fx:id="surnameRField" alignment="CENTER" promptText="SURNAME">
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField id="input-field" fx:id="numberRField" alignment="CENTER" promptText="NUMBER">
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <DatePicker id="datepicker" fx:id="dPickerR" promptText="Date of Birth">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="67.0" />
+                                 </VBox.margin>
+                              </DatePicker>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button id="logBtn" fx:id="regBtn" mnemonicParsing="false" onAction="#regAttempt" prefWidth="260.0" text="Sign Up">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin></Button>
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="50.0" left="75.0" right="75.0" top="50.0" />
+               </StackPane.margin>
+               <effect>
+                  <DropShadow height="14.0" radius="6.5" spread="0.1" width="14.0" />
+               </effect>
+            </VBox>
+         </children>
+         <effect>
+            <InnerShadow choke="0.17" height="201.78" radius="84.5975" width="138.61" />
+         </effect>
+      </StackPane>
+   </children>
+</AnchorPane>

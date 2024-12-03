@@ -1,0 +1,121 @@
+/* Fullscreen background for the login page */
+#login-pane {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+
+}
+
+/* Main container for the login form */
+#vbox {
+    -fx-border-radius: 25px;
+    -fx-border-color: #FF4ED7; /* Neon pink to match the theme */
+    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
+    -fx-pref-width: 45em;
+    -fx-max-width: 45em;
+    -fx-min-width: 30em; /* Ensure minimum width for responsiveness */
+    -fx-pref-height: 50em;
+    -fx-max-height: 50em;
+    -fx-min-height: 40em; /* Adjusted minimum height */
+    -fx-padding: 2em;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
+}
+
+/* Hover effect for vbox */
+#vbox:hover {
+    -fx-border-radius: 15px;
+    -fx-border-width: 3px;
+    -fx-border-color: #FF79F1; /* Subtle brighter pink on hover */
+}
+
+/* Input field styling */
+#input-field {
+    -fx-padding: 12px 20px; /* Adjust padding for better proportion */
+    -fx-pref-height: 4em; /* Reduced height */
+    -fx-min-height: 3.5em;
+    -fx-pref-width: 32em;
+    -fx-min-width: 10em;
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Slight white transparent background */
+    -fx-border-radius: 25px;
+    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: white;
+    -fx-font-size: 14px; /* Adjusted font size */
+    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
+}
+
+/* Hover effect for input fields */
+#input-field:hover {
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Focus effect for input fields */
+#input-field:focused {
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-border-width: 3px;
+    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Help button styling */
+#helpBtn {
+    -fx-background-color: transparent;
+    -fx-border-radius: 15px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+#helpBtn:hover {
+    -fx-text-fill: #FF79F1; /* Change color to match the theme */
+}
+
+/* Login button styling */
+#logBtn {
+    -fx-background-radius: 25;
+    -fx-font-family: "Constantia";
+    -fx-font-size: 1.5em;
+    -fx-background-color: #FF4ED7; /* Neon pink background */
+    -fx-opacity: 0.9;
+    -fx-text-fill: white;
+    -fx-pref-height: 3.5em; /* Adjusted height */
+    -fx-pref-width: 15em; /* Adjusted width for better proportions */
+}
+
+#logBtn:hover {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 25;
+    -fx-text-fill: white;
+}
+
+/* Signup button styling */
+#signupBtn {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-font-family: Verdana;
+    -fx-font-size: 1em;
+}
+
+#signupBtn:hover {
+    -fx-text-fill: #FF79F1; /* Hover color to match theme */
+}
+
+/* Title text styling */
+#text {
+    -fx-font-family: "Trebuchet MS";
+    -fx-font-size: 5em;
+    -fx-fill: #FF4ED7; /* Brighter pink */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 10, 0, 0, 5);
+    -fx-text-alignment: center;
+    -fx-text-origin: center;
+}
+
+/* General hover effect for buttons */
+button:hover {
+    -fx-cursor: hand;
+}
