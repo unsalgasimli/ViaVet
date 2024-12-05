@@ -126,8 +126,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         initializeScreenSize();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/logreg/appLogin.fxml"));
-        initStage(stage, loader, "/main/app/logreg/login.css");
+  //      FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/logreg/appLogin.fxml"));
+   //     initStage(stage, loader, "/main/app/logreg/login.css");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/patient/patientAppointment.fxml"));
+            initStage(stage, loader, "/main/resources/app.css");
 
     }
     public static void initializeScreenSize() {

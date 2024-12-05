@@ -26,7 +26,9 @@
     -fx-max-height: 4em;
 }
 #botHbox{
-    -fx-background-color: #15282E;
+    -fx-border-color: #FF4ED7; /* Neon pink to match the theme */
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
     -fx-background-radius: 0 0 25 25;
     -fx-border-radius: 0 0 25 25;
     -fx-min-width: 5em;
@@ -35,6 +37,12 @@
     -fx-min-height: 40em;
     -fx-pref-height: 75em;
     -fx-max-height: 75em;
+}
+
+#botHbox:hover {
+    -fx-border-radius: 0  0 15px 15px;
+    -fx-border-width: 5px;
+    -fx-border-color: #FF79F1; /* Subtle brighter pink on hover */
 }
 #infoVbox{
     -fx-min-width: 15em;
@@ -77,7 +85,7 @@
 
     -fx-background-radius: 25 0 0 0;
     -fx-border-radius: 25 0 0 0;
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height:4em;
@@ -94,7 +102,7 @@
 
     -fx-background-radius: 0 0 0 0;
     -fx-border-radius: 0 0 0 0;
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height:4em;
@@ -109,7 +117,7 @@
 #infoBtn{
     -fx-background-radius: 0 0 0 0;
     -fx-border-radius: 0 0 0 0;
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height:4em;
@@ -124,7 +132,7 @@
 #logoutBtn{
     -fx-background-radius: 0 25 0 0;
     -fx-border-radius: 0 25 0 0;
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
     -fx-min-height: 2em;
     -fx-pref-height: 4em;
     -fx-max-height: 4em;
@@ -146,7 +154,7 @@
 
     -fx-background-radius: 25 0 0 0;
     -fx-border-radius: 25 0 0 0;
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height:4em;
@@ -163,7 +171,7 @@
 
     -fx-background-radius: 0 0 0 0;
     -fx-border-radius: 0 0 0 0;
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height:4em;
@@ -179,7 +187,7 @@
 #logoutBtnAd{
     -fx-background-radius: 0 25 0 0;
     -fx-border-radius: 0 25 0 0;
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
     -fx-min-height: 2em;
     -fx-pref-height: 4em;
     -fx-max-height: 4em;
@@ -304,23 +312,40 @@
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height: 4em;
-    -fx-background-color: #275565;
-    -fx-border-radius: 5;
+
+
+ /*   -fx-background-color: transparent; */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
+    -fx-font-size: 14px; /* Adjusted font size */
+    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
+
+
+    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
 }
+
 
 #descField:hover{
-    -fx-background-color: #1C3A45;
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-background-radius: 25px;
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
-    -fx-scale-x:1.05 ;
 }
 #descField:focused{
-    -fx-scale-y: 1;
-    -fx-scale-x:1 ;
-    -fx-background-color: #285564;
-    -fx-background-radius: 25;
-    -fx-text-fill: white;
-
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-background-color: rgba(0, 0, 0, 0.1); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-border-width: 3px;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 #datePicker{
     -fx-min-width: 5em;
@@ -329,27 +354,57 @@
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height: 4em;
-    -fx-background-color: #275565;
-}
-#datePicker .text-field {
+
+    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-border-radius: 5px;
+    -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
-    -fx-background-color: #275565;
+    -fx-font-size: 14px; /* Adjusted font size */
+    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
+    -fx-background-color: transparent;
+
+
+
+
+}
+
+#datePicker .text-field {
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
 }
 #datePicker:hover{
-    -fx-scale-y: 1.05;
-    -fx-scale-x:1.05 ;
+    -fx-border-color: transparent; /* Brighter pink for hover */
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+
+
 }
 #datePicker:hover .text-field {
-    -fx-text-fill: white;
-    -fx-background-color: #1C3A45;
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px;  /* Fixed border radius */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 #datePicker:focused{
-    -fx-background-radius: 25;
-    -fx-background-color: #285564;
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 #datePicker:focused .text-field{
-    -fx-background-radius: 25;
-    -fx-background-color: #285564;
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
 }
 
 #menuBtn .label{
@@ -360,7 +415,10 @@
 }
 #menuBtn .menu-item{
 
-    -fx-background-color: #30667A;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
 }
 #menuBtn .menu-item:focused {
     -fx-background-color: #30667A; /* Change the background color when focused (for keyboard navigation) */
@@ -371,7 +429,7 @@
     -fx-background-color: #1C3A45; /* Change the background color on hover */
 }
 #menuBtn .context-menu{
-    -fx-background-color: #09181D;
+    -fx-background-color: #0916D;
 
 }
 
@@ -382,15 +440,21 @@
     -fx-min-height: 1em;
     -fx-pref-height:4em;
     -fx-max-height: 4em;
-    -fx-background-color: #275565;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-border-color: #20404C;
+
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2); /* Glow effect */
 }
 #menuBtn:hover{
-    -fx-scale-y: 1.05;
-    -fx-scale-x:1.05 ;
-    -fx-background-color: #1C3A45;
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;  /* Fixed border radius */
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
 }
 #menuBtn:focused{
     -fx-scale-y: 1  ;
@@ -405,16 +469,23 @@
     -fx-min-height: 1em;
     -fx-pref-height:3em;
     -fx-max-height: 3em;
+
+
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
     -fx-text-fill: white;
-    -fx-background-color: #31687C   ;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-border-color: #20404C;
+    -fx-background-color: #f714ff;
+    -fx-opacity: 0.5;
+
 }
 #selectionBtn:hover{
-    -fx-scale-y: 1.05;
-    -fx-scale-x:1.05 ;
-    -fx-background-color: #1C3A45;
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2); /* Glow effect */
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;  /* Fixed border radius */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1.15;
 }
 #selectionBtnDetails{
     -fx-min-width: 5em;

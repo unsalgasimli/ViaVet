@@ -10,6 +10,7 @@
     -fx-border-radius: 15px;
     -fx-border-color: #FF4ED7; /* Neon pink to match the theme */
     -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
     -fx-pref-width: 45em;
     -fx-max-width: 45em;
     -fx-min-width: 30em; /* Ensure minimum width for responsiveness */
@@ -18,7 +19,7 @@
     -fx-min-height: 40em; /* Adjusted minimum height */
     -fx-padding: 2em;
     -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
+
 }
 
 /* Hover effect for vbox */
