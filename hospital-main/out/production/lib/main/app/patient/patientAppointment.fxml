@@ -111,7 +111,7 @@
                                           <Insets right="20.0" />
                                        </HBox.margin>
                                     </MenuButton>
-                                    <MenuButton id="menuBtn" fx:id="timeMenu" mnemonicParsing="false" onMouseClicked="#setTime" prefHeight="37.0" prefWidth="117.0" text="Time">
+                                    <MenuButton id="menuBtn" fx:id="timeMenu" mnemonicParsing="false"  prefHeight="37.0" prefWidth="117.0" text="Time">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -123,7 +123,7 @@
                               </HBox>
                               <VBox id="insiderVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button id="selectionBtn" mnemonicParsing="false" onAction="#request" text="Request">
+                                    <Button id="selectionBtn" mnemonicParsing="false"  text="Request">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>

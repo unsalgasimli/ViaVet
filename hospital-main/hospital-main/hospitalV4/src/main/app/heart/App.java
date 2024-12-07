@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+import main.app.heart.PostgreSQLConnection;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -126,11 +126,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         initializeScreenSize();
-  //      FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/logreg/appLogin.fxml"));
-   //     initStage(stage, loader, "/main/app/logreg/login.css");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/logreg/appLogin.fxml"));
+        initStage(stage, loader, "/main/app/logreg/login.css");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/patient/patientAppointment.fxml"));
-            initStage(stage, loader, "/main/resources/app.css");
+
+
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/patient/patientAppointment.fxml"));
+//            initStage(stage, loader, "/main/resources/app.css");
 
     }
     public static void initializeScreenSize() {

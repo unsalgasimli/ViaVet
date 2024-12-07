@@ -8,591 +8,17 @@ import main.app.logreg.LogController;
 import java.security.SecureRandom;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+
+import static main.app.logreg.LogController.activeID;
 
 public class DataBase {
     public static String uString;
 
-    //RETURNS LIST OF STAFF AS A STRING
-    public static String getStaffList() {
-        String text = "";
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
+    static PostgreSQLConnection dbManager = new PostgreSQLConnection();
 
-            ResultSet resultSet = statement.executeQuery("select * from stafflist");
-            while (resultSet.next()) {
-                text += ((resultSet.getString(3) + " " + resultSet.getString(4) + " " + resultSet.getString(6) + " "));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return text;
-    }
 
-
-    public static String getPetList(String type) {
-        String text = "";
-        if (type.equals("patient")) {
-            try {
-                DatabaseManager dbManager = new MySQLDatabaseManager();
-                Connection connection = dbManager.getConnection();
-                Statement statement = dbManager.createStatement(connection);
-
-                ResultSet resultSet = statement.executeQuery("select * from petlist where ownerID='" + LogController.activeID + "'");
-                while (resultSet.next()) {
-                    text += ((resultSet.getString(3) + " " + resultSet.getString(4) + " " + resultSet.getString(5) + " "));
-
-                }
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        } else {
-            try {
-                DatabaseManager dbManager = new MySQLDatabaseManager();
-                Connection connection = dbManager.getConnection();
-                Statement statement = dbManager.createStatement(connection);
-
-                ResultSet resultSet = statement.executeQuery("select * from petlist");
-                while (resultSet.next()) {
-                    text += getPatientNS(resultSet.getString(2)) + "$" + resultSet.getString(3) + "$";
-
-                }
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-
-        }
-        return text;
-    }
-
-
-    public static String getVetList() {
-        String text = "";
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            ResultSet resultSet = statement.executeQuery("select name,surname from stafflist ");
-            while (resultSet.next()) {
-                text += ((resultSet.getString(1) + " " + resultSet.getString(2) + "$"));
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return text;
-    }
-
-    //RETURNS LIST OF PATIENS AS A STRING
-    public static String getPatientList() {
-        String text = "";
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            ResultSet resultSet = statement.executeQuery("select * from patientlist");
-            while (resultSet.next()) {
-                text += ((resultSet.getString(3) + " " + resultSet.getString(4) + " " + resultSet.getString(5) + " " + resultSet.getString(6) + " " + resultSet.getString(7) + " "));
-
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-        return text;
-    }
-
-
-    //RETURNS LIST OF APPOINTMENTS AS A STRING
-    public static String getAppointmentList(String id, boolean logic) {
-        String text = "";
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            if (logic == false) {
-                ResultSet resultSet = statement.executeQuery("select * from appointmentlist WHERE patientID='" + id + "';");
-                while (resultSet.next()) {
-                    text += ((resultSet.getString(3) + " " + resultSet.getString(8) + " " + resultSet.getString(4) + " " + resultSet.getString(5) + " " + resultSet.getString(7) + " "));
-                }
-            } else if (logic == true) {
-                ResultSet resultSet = statement.executeQuery("select * from appointmentlist WHERE staffID='" + id + "';");
-                while (resultSet.next()) {
-                    text += getPatientNS((resultSet.getString(2))) + " " + resultSet.getString(4) + " " + resultSet.getString(5) + " " + resultSet.getString(7) + " " + resultSet.getString(8) + " ";
-                }
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return text;
-    }
-
-
-    public static String getHistoryList(String id) {
-        String text = "";
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-
-            ResultSet resultSet = statement.executeQuery("select * from historylist WHERE patientID='" + id + "';");
-
-            while (resultSet.next()) {
-
-                text += ((resultSet.getString(4) + "$" + resultSet.getString(3) + "$" + resultSet.getString(5) + "$"));
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return text;
-    }
-
-
-    public static String getHistoryList() {
-        String text = "";
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            ResultSet resultSet = statement.executeQuery("select * from historylist;");
-            while (resultSet.next()) {
-                text += getPatientNS((resultSet.getString(2))) + "$" + resultSet.getString(3) + "$" + resultSet.getString(5) + "$";
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return text;
-    }
-
-
-    //RETURNS PATIENT FULL NAME USING ITS ID
-    public static String getPatientNS(String id) {
-        String text = "";
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            ResultSet resultSet = statement.executeQuery("select * from patientlist where uniqueID='" + id + "';");
-            while (resultSet.next()) {
-                text += ((resultSet.getString(3) + " " + resultSet.getString(4) + " " + resultSet.getString(5)));
-
-            }
-            statement.close();
-            connection.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-        return text;
-
-    }
-
-    //Validating ID-Password & TYPE OF USER
-    public static String checkAcc(String accID, String password, ActionEvent event) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            ResultSet resultSet = statement.executeQuery("select * from patientlist where uniqueID = '" + accID + "';");
-            resultSet.next();
-            if (resultSet.getString(8).equals(password)) {
-                statement.close();
-                connection.close();
-                return "patient";
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            ResultSet resultSet = statement.executeQuery("select * from stafflist where uniqueID = '" + accID + "';");
-            resultSet.next();
-            if (resultSet.getString(6).equals(password)) {
-                statement.close();
-                connection.close();
-                return "staff";
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        if (accID.equals("AAAA") && password.equals("1111")) {
-            return "admin";
-        }
-
-
-        return "null";
-    }
-
-
-    private static void showAlert(Alert.AlertType alertType, String title, String contentText, ActionEvent event) {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        Alert alert = new Alert(alertType);
-        alert.initOwner(stage);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contentText);
-        alert.showAndWait();
-    }
-
-    //ADDS NEW PATIENT TO DATABASE
-    public static void addPatient(String name, String surname, String middlename, LocalDate date, String number, String password) {
-        String accID = generateUniqueString();
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-
-            statement.executeUpdate("INSERT INTO patientlist (uniqueID,name, surname, middlename,birthday,number,password)" + "VALUES ('" +
-                    accID + "','" + name + "','" + surname + "','" + middlename + "','" + date + "','" + number + "','" + password + "')");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-    }
-
-
-    public static void addHistory(String patient, String pet, String info, String user) throws SQLException {
-        MySQLDatabaseManager manager = new MySQLDatabaseManager();
-        manager.addHistory(patient, pet, info, user);
-    }
-
-
-    //ADDS NEW STAFF TO DATABASE
-    public static void addStaff(String name, String surname, String number, String password) {
-
-        String accID = generateUniqueString();
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            statement.executeUpdate("INSERT INTO stafflist (uniqueID,name,surname,number,password)" + "VALUES ('" +
-                    accID + "','" + name + "','" + surname + "','" + number + "','" + password + "')");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-    }
-
-
-    public static void addPet(String name, LocalDate date, String type) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            statement.executeUpdate("INSERT INTO petlist (ownerID,petName,petAge,petType)" + "VALUES ('" +
-                    LogController.activeID + "','" + name + "','" + date + "','" + type + "')");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-    }
-
-    //ADDS NEW APPOINTMENT TO DATABASE
-    public static void addAppointment(String patientID, String staffID, LocalDate date, String time, String info, String status, String petName) {
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            statement.executeUpdate("INSERT INTO appointmentlist (patientID,staffID,date,time,info,status,petName)" + "VALUES ('" +
-                    patientID + "','" + staffID + "','" + date + "','" + time + "','" + info + "','" + status + "','" + petName + "')");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-
-    }
-
-    //RETURNS STAFF ID USING ITS NAME,SURNAME AND PROFESSION
-    public static String getStaffID(String name, String surname) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            ResultSet resultSet = statement.executeQuery("SELECT uniqueID FROM stafflist WHERE name = '" + name + "' AND surname = '" + surname + "';");
-            resultSet.next();
-            return resultSet.getString(1);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return "ERROR";
-    }
-
-    public static String getStaffNS(String id) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            if (!id.equals("0000")) {
-                ResultSet resultSet = statement.executeQuery("SELECT name,surname FROM stafflist WHERE uniqueID = '" + id + "';");
-                resultSet.next();
-                return resultSet.getString(1) + " " + resultSet.getString(2);
-            } else {
-                return "Owner";
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return "ERROR";
-    }
-
-
-    public static String getOccupiedTimes(String staffid, String date) {
-        String times = "";
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            ResultSet resultSet = statement.executeQuery("SELECT time FROM appointmentlist WHERE staffID = '" + staffid + "' AND date = '" + date + "';");
-            while (resultSet.next()) {
-                times += resultSet.getString(1);
-            }
-            return times;
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return "ERROR";
-    }
-
-    //RETURNS PATIENT ID USING ITS NAME,SURNAME AND MIDDLENAME
-    public static String getPatientID(String name, String surname, String middlename) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            ResultSet resultSet = statement.executeQuery("SELECT uniqueID FROM patientlist WHERE name = '" + name + "' AND surname = '" + surname + "' AND middlename = '" + middlename + "';");
-            resultSet.next();
-            return resultSet.getString(1);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-        return "ERROR";
-    }
-
-    public static String getUserInfo(String id, String user) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            if (user.equals("staff")) {
-
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM stafflist WHERE uniqueID = '" + id + "';");
-                resultSet.next();
-                return resultSet.getString(3) + " " + resultSet.getString(4) + " " + resultSet.getString(5) + " " + resultSet.getString(6);
-            } else {
-
-                //    ResultSet resultSet = statement.executeQuery("SELECT uniqueID FROM patientlist WHERE name = '" + name + "' AND surname = '" + surname + "' AND middlename = '" + middlename + "';");
-                //     resultSet.next();
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-        return "ERROR";
-    }
-
-    public static String updateStaff(String name, String surname, String number, String password) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            statement.executeUpdate("UPDATE stafflist SET name = '" + name + "',surname = '" + surname + "',number = '" + number + "', password = '" + password + "' WHERE uniqueID = '" + LogController.activeID + "';");
-
-
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-        return "ERROR";
-    }
-
-    //DELETES STAFF FORM DATABASE USING ITS NAME,SURNAME AND PROFESSION
-    public static void deleteStaff(String name, String surname) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            statement.executeUpdate("DELETE FROM stafflist WHERE name = '" + name + "' AND surname = '" + surname + "';");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-    }
-
-
-    public static void deleteAppointment(String id, String pet, String date) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            statement.executeUpdate("DELETE FROM appointmentlist WHERE staffID = '" + id + "' AND date = '" + date + "' AND petName = '" + pet + "';");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-    }
-
-    public static void deleteHistory(String name, String pet, String info, String user) {
-        String id;
-        if (user.equals("patient")) {
-            String[] text = name.split(" ");
-
-            if (!name.equals("Owner")) {
-                id = getStaffID(text[0], text[1]);
-            } else {
-                id = "0000";
-            }
-        } else {
-            id = name;
-        }
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            System.out.println("DELETE FROM historylist WHERE  info = '" + info + "' AND petName = '" + pet + "';");
-            statement.executeUpdate("DELETE FROM historylist WHERE  info = '" + info + "' AND petName = '" + pet + "';");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-    }
-
-
-    public static void deletePet(String name, String birth, String type) {
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            statement.executeUpdate("DELETE FROM petlist WHERE petName = '" + name + "' AND petAge = '" + birth + "' AND petType = '" + type + "';");
-            statement.executeUpdate("DELETE FROM appointmentlist WHERE patientID = '" + LogController.activeID + "' AND petName = '" + name + "';");
-            statement.close();
-            connection.close();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-
-    }
-
-    //DELETES PATIENT FORM DATABASE USING ITS NAME,SURNAME AND MIDDLENAME
-    public static void deletePatient(String name, String surname, String middlename, String bday) {
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            statement.executeUpdate("DELETE FROM patientlist WHERE name = '" + name + "' AND surname = '" + surname + "' AND middlename = '" + middlename + "' AND birthday = '" + bday + "';");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
-
-    //RETURNS APPOINTMENT INFO FROM DATABASE USING ITS FullName,DATE AND TIME
-    public static String showAppointmentInfo(String fName, String date, String time) {
-        String[] text = fName.split(" ");
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            ResultSet resultSet = statement.executeQuery("SELECT info FROM appointmentlist WHERE patientID = '" + getPatientID(text[0], text[1], text[2]) + "' AND date = '" + date + "' AND time = '" + time + "';");
-            resultSet.next();
-            return resultSet.getString(1);
-
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return "ERROR";
-    }
-
-    public static String showAppointmentInfoPM(String fName, String date, String time) {
-        String[] text = fName.split(" ");
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            ResultSet resultSet = statement.executeQuery("SELECT info FROM appointmentlist WHERE staffID = '" + getStaffID(text[0], text[1]) + "' AND date = '" + date + "' AND time = '" + time + "';");
-            resultSet.next();
-            return resultSet.getString(1);
-
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return fName;
-    }
-
-    //CHANGES APPOINTMENT STATUS USING FullName,DATE,TIME AND STATUS
-    public static void setAppointmentStatus(String fname, String date, String time, String status) {
-        String[] text = fname.split(" ");
-
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            statement.executeUpdate("UPDATE appointmentlist SET status = '" + status + "'" + " WHERE patientID ='" + getPatientID(text[0], text[1], text[2]) + "' AND date = '" + date + "' AND time = '" + time + "';");
-
-        } catch (Exception e) {
-            System.err.println(e);
-
-        }
-    }
-
-    public static void setAppointmentStatus(String date, String time, String status, ActionEvent event) {
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-
-            ResultSet resultSet = statement.executeQuery("select status from appointmentlist WHERE patientID ='" + LogController.activeID + "' AND date = '" + date + "' AND time = '" + time + "';");
-            resultSet.next();
-            if (resultSet.getString(1).equals("Proposed")) {
-                statement.executeUpdate("UPDATE appointmentlist SET status = '" + status + "'" + " WHERE patientID ='" + LogController.activeID + "' AND date = '" + date + "' AND time = '" + time + "';");
-            } else {
-                showAlert(Alert.AlertType.WARNING, "STATUS ERROR", "You can only change PROPOSED status", event);
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-
-        }
-    }
-
-    public static void proposeAppointment(String fname, String date, String time, String status, String newDate, String newTime) {
-        String[] text = fname.split(" ");
-
-        try {
-            DatabaseManager dbManager = new MySQLDatabaseManager();
-            Connection connection = dbManager.getConnection();
-            Statement statement = dbManager.createStatement(connection);
-            statement.executeUpdate("UPDATE appointmentlist SET status = '" + status + "',date = '" + newDate + "',time ='" + newTime + "'" + " WHERE patientID ='" + getPatientID(text[0], text[1], text[2]) + "' AND date = '" + date + "' AND time = '" + time + "';");
-
-        } catch (Exception e) {
-            System.err.println(e);
-
-        }
-    }
-
-    //GENERATES RANDOM STRING FOR SECURITY
     private static String generateUniqueString() {
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(4);
@@ -604,4 +30,157 @@ public class DataBase {
         uString = String.valueOf(sb);
         return sb.toString();
     }
+
+    public static void addPatient(String first_name, String last_name, String middle_name, LocalDate date_of_birth, String phone_number, String password) {
+
+        try (Connection connection = dbManager.getConnection()) {
+            String insertQuery = "INSERT INTO patient_list (unique_id, first_name, last_name, middle_name, date_of_birth,phone_number,password) VALUES (?, ?, ?, ?, ?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+
+            // Set parameters
+            preparedStatement.setString(1, generateUniqueString());
+            preparedStatement.setString(2, first_name);
+            preparedStatement.setString(3, last_name);
+            preparedStatement.setString(4, middle_name);
+            preparedStatement.setDate(5, Date.valueOf(date_of_birth));
+            preparedStatement.setString(6, phone_number);
+            preparedStatement.setString(7, password);
+
+            // Execute update
+            int rowsInserted = preparedStatement.executeUpdate();
+            System.out.println("Rows inserted: " + rowsInserted);
+        } catch (Exception e) {
+            System.err.println("Error while adding staff record: " + e.getMessage());
+        }
+
+    }
+
+    public static String checkAcc(String text, String text1, ActionEvent event) {
+        return "patient";
+    }
+
+
+    public static String getAppointmentList(String activeID,boolean b) {
+
+        StringBuilder result = new StringBuilder();
+        try (Connection connection = dbManager.getConnection()) {
+            String selectQuery = "SELECT * FROM patient_appointments_view WHERE patient_unique_id = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+
+            // Set parameters
+            preparedStatement.setString(1, activeID);
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the result set
+            while (resultSet.next()) {
+                // Example of processing and appending data; customize this according to your needs
+                String appointmentDetails = "Appointment ID: " + resultSet.getString("appointment_id") +
+                        ", Date: " + resultSet.getString("appointment_date") +
+                        ", Time: " + resultSet.getString("appointment_time");
+                result.append(appointmentDetails).append("\n");
+            }
+        } catch (Exception e) {
+            System.err.println("Error while retrieving appointment records: " + e.getMessage());
+            return "Error: " + e.getMessage();
+        }
+        return result.toString();
+
+    }
+
+    public static void addPet(String name, LocalDate age, String type) {
+
+        try (Connection connection = dbManager.getConnection()) {
+            String insertQuery = "INSERT INTO pet_list (owner_id, name, age, type) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+
+            // Set parameters
+            preparedStatement.setString(1, activeID);
+            preparedStatement.setString(2, name);
+            preparedStatement.setDate(3, Date.valueOf(age));
+            preparedStatement.setString(4, type);
+
+            // Execute update
+            int rowsInserted = preparedStatement.executeUpdate();
+            System.out.println("Rows inserted: " + rowsInserted);
+        } catch (Exception e) {
+            System.err.println("Error while adding staff record: " + e.getMessage());
+        }
+
+    }
+
+
+
+
+    public static String getPetList(String patient) {
+        StringBuilder result = new StringBuilder();
+
+        try (Connection connection = dbManager.getConnection()) {
+            // Query to select pet details
+            String selectQuery = "SELECT name, age, type FROM pet_list WHERE owner_id = (?);";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+
+            // Set the parameter (patient unique_id)
+            preparedStatement.setString(1, patient); // Assuming `patient` is the unique ID
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the result set
+            while (resultSet.next()) {
+                String name = resultSet.getString("name").trim();  // Remove any leading/trailing spaces
+                Date birthDate = resultSet.getDate("age");  // 'age' is a birthdate
+                String type = resultSet.getString("type").trim();  // Remove any leading/trailing spaces
+
+                // Calculate the age from birthDate
+                LocalDate birthLocalDate = birthDate.toLocalDate();
+                LocalDate currentDate = LocalDate.now();
+                Period period = Period.between(birthLocalDate, currentDate);
+                int ageInYears = period.getYears();
+
+                // Append pet details with age in years, formatted with a separator
+                String petDetails = name + "|" + birthDate + " years|" + type;
+                result.append(petDetails).append("\n");  // Using newline to separate each pet's details
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error while retrieving pet records: " + e.getMessage());
+            return "Error: " + e.getMessage();
+        }
+        return result.toString();
+    }
+
+
+
+
+
+
+
+    public static void deletePet(String name, String type) {
+
+        try (Connection connection = dbManager.getConnection()) {
+            // SQL delete query
+            String deleteQuery = "DELETE FROM pet_list WHERE name = ? AND type = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+
+            // Set parameters for the query
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, type);
+
+            // Print the SQL query with actual values in the desired format
+            System.out.println("Executing query: DELETE FROM pet_list WHERE name = ('" + name + "') AND type = ('" + type + "')");
+
+            // Execute the delete statement
+            int rowDeleted = preparedStatement.executeUpdate();
+            System.out.println("Rows Deleted: " + rowDeleted);
+
+        } catch (Exception e) {
+            // Print a more specific error message
+            System.err.println("Error while deleting pet record: " + e.getMessage());
+        }
+    }
+
+
 }
+

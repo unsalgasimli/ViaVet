@@ -9,6 +9,6 @@ public interface DatabaseManager {
     Connection getConnection() throws SQLException;
 
     Statement createStatement(Connection connection) throws SQLException;
-    void addHistory(String patient, String pet, String info, String staffID) throws SQLException;
+
 
 }

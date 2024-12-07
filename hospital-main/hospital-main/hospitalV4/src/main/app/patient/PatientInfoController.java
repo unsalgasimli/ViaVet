@@ -75,6 +75,13 @@ public class PatientInfoController implements Initializable {
 
     }
 
+    public void refresh() {
+        nameField.clear();
+        datePicker.setValue(null);
+        petMenu.setText("Pet");
+        petTable.setItems(getPetData());
+    }
+
     public void logOut(ActionEvent event) throws Exception {
         App.logOpen();
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
@@ -89,17 +96,43 @@ public class PatientInfoController implements Initializable {
     private ObservableList<PatientInfoController.Pet> getPetData() {
         petTable.getItems().clear();
         ObservableList<PatientInfoController.Pet> data = FXCollections.observableArrayList();
-        String[] text = DataBase.getPetList("patient").split(" ");
+        String petListData = DataBase.getPetList("patient");
 
-        for (int i = 0; i < text.length; i += 3) {
+        // Print raw data to debug the format
+        System.out.println("Pet List Data: " + petListData);
+
+        String[] text = petListData.split("\n");  // Split by newline to separate each pet
+
+        for (String petDetails : text) {
+            // Skip empty lines
+            if (petDetails.trim().isEmpty()) continue;
+
+            // Print each petDetails to check how it's split
+            System.out.println("Pet Details: " + petDetails);
+
             try {
-                data.add(new PatientInfoController.Pet(text[i], text[i + 1], text[i + 2]));
+                String[] petInfo = petDetails.split("\\|");  // Split by pipe ("|")
+
+                // Ensure there are exactly 3 parts: name, age, and type
+                if (petInfo.length == 3) {
+                    String name = petInfo[0].trim();  // Remove leading/trailing spaces
+                    String age = petInfo[1].trim();
+                    String type = petInfo[2].trim();
+
+                    // Add the pet to the data list
+                    data.add(new PatientInfoController.Pet(name, age, type));
+                } else {
+                    System.err.println("Invalid pet data format: " + petDetails);
+                }
             } catch (Exception e) {
-                System.err.println(e);
+                System.err.println("Error processing pet data: " + e);
             }
         }
         return data;
     }
+
+
+
 
     public void addPet() {
         if (!(nameField.getText().isEmpty() || datePicker.getValue() == null || petMenu.getText().equals("Pet"))) {
@@ -108,20 +141,14 @@ public class PatientInfoController implements Initializable {
         }
     }
 
-    public void refresh() {
-        nameField.clear();
-        datePicker.setValue(null);
-        petMenu.setText("Pet");
-        petTable.setItems(getPetData());
-    }
+
 
     public void deletePet(TableView<PatientInfoController.Pet> tableView,ActionEvent event) {
         PatientInfoController.Pet selectedPet = tableView.getSelectionModel().getSelectedItem();
         if (selectedPet != null) {
             String name = selectedPet.getName();
-            String birth = selectedPet.getBirth();
             String type = selectedPet.getType();
-            DataBase.deletePet(name, birth, type);
+            DataBase.deletePet(name, type);
             petTable.setItems(getPetData());
 
         } else {
