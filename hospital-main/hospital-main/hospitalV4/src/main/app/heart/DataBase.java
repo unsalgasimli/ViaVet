@@ -60,25 +60,29 @@ public class DataBase {
     }
 
 
-    public static String getAppointmentList(String activeID,boolean b) {
+    public static String getAppointmentList(String activeID, boolean b) {
 
         StringBuilder result = new StringBuilder();
         try (Connection connection = dbManager.getConnection()) {
             String selectQuery = "SELECT * FROM patient_appointments_view WHERE patient_unique_id = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
-
             // Set parameters
             preparedStatement.setString(1, activeID);
 
             // Execute the query
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Process the result set
             while (resultSet.next()) {
                 // Example of processing and appending data; customize this according to your needs
-                String appointmentDetails = "Appointment ID: " + resultSet.getString("appointment_id") +
-                        ", Date: " + resultSet.getString("appointment_date") +
-                        ", Time: " + resultSet.getString("appointment_time");
+                String appointmentDetails =
+                        resultSet.getString("staff_name")
+                        +"\n" +resultSet.getString("pet_name")
+                        +"\n" +resultSet.getString("appointment_date")
+                        +"\n" +resultSet.getString("appointment_time")
+                        +"\n" +resultSet.getString("status");
+
                 result.append(appointmentDetails).append("\n");
             }
         } catch (Exception e) {
@@ -111,8 +115,6 @@ public class DataBase {
     }
 
 
-
-
     public static String getPetList(String patient) {
         StringBuilder result = new StringBuilder();
 
@@ -122,7 +124,7 @@ public class DataBase {
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
 
             // Set the parameter (patient unique_id)
-            preparedStatement.setString(1, patient); // Assuming `patient` is the unique ID
+            preparedStatement.setString(1, activeID); // Assuming `patient` is the unique ID
 
             // Execute the query
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -152,11 +154,6 @@ public class DataBase {
     }
 
 
-
-
-
-
-
     public static void deletePet(String name, String type) {
 
         try (Connection connection = dbManager.getConnection()) {
@@ -179,8 +176,128 @@ public class DataBase {
             // Print a more specific error message
             System.err.println("Error while deleting pet record: " + e.getMessage());
         }
+
     }
 
+
+    public static String getVetList() {
+        StringBuilder result = new StringBuilder();
+
+        try (Connection connection = dbManager.getConnection()) {
+            // Query to select pet details
+            String selectQuery = "SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM staff_list;";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+
+            // Set the parameter (patient unique_id)
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the result set
+            while (resultSet.next()) {
+                String name = resultSet.getString("full_name");  // Remove any leading/trailing spaces
+                result.append(name).append("\n");  // Using newline to separate each pet's details
+            }
+
+
+
+        } catch (Exception e) {
+            System.err.println("Error while retrieving pet records: " + e.getMessage());
+            return "Error: " + e.getMessage();
+        }
+        return result.toString();
+
+    }
+
+    public static String getStaffId(String full_name) {
+        StringBuilder result = new StringBuilder();
+
+        try (Connection connection = dbManager.getConnection()) {
+            // Query to select pet details
+            String selectQuery = "SELECT unique_id FROM staff_list WHERE first_name = ? AND last_name = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+            String[]  text = full_name.split(" ");
+            preparedStatement.setString(1, text[0]);
+            preparedStatement.setString(2, text[1]);
+
+            // Set the parameter (patient unique_id)
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the result set
+            while (resultSet.next()) {
+                String unique_id = resultSet.getString("unique_id");  // Remove any leading/trailing spaces
+                result.append(unique_id).append("\n");  // Using newline to separate each pet's details
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error while retrieving pet records: " + e.getMessage());
+            return "Error: " + e.getMessage();
+        }
+        return result.toString();
+    }
+
+
+    public static String getPetId(String full_name) {
+        StringBuilder result = new StringBuilder();
+
+        try (Connection connection = dbManager.getConnection()) {
+            // Query to select pet details
+            String selectQuery = "SELECT id FROM pet_list WHERE owner_id = ? AND name = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+
+            preparedStatement.setString(1, activeID);
+            preparedStatement.setString(2, full_name);
+
+            // Set the parameter (patient unique_id)
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the result set
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");  // Remove any leading/trailing spaces
+                result.append(id).append("\n");  // Using newline to separate each pet's details
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error while retrieving pet records: " + e.getMessage());
+            return "Error: " + e.getMessage();
+        }
+        return result.toString();
+    }
+
+
+
+    public static void createAppointment(String staffId, int petId, String date, String time, String desc) {
+
+        try (Connection connection = dbManager.getConnection()) {
+            // Query to insert the appointment record
+            String insertQuery = "INSERT INTO appointment_list (patient_id, staff_id, pet_id, appointment_date, appointment_time, info, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+
+            // Set parameters
+            preparedStatement.setString(1, activeID);  // Assuming activeID is the patient's ID
+            preparedStatement.setString(2, staffId);   // Staff ID
+            preparedStatement.setInt(3, petId);     // Pet ID
+
+            // Set appointment date (assuming it's in the format 'YYYY-MM-DD')
+            preparedStatement.setDate(4, Date.valueOf(date));  // Set the date correctly
+
+            // Set appointment time (assuming it's in the format 'HH:MM')
+            preparedStatement.setTime(5, Time.valueOf(time + ":00"));  // Append ":00" to make it a valid time format (HH:MM:SS)
+
+            preparedStatement.setString(6, desc);        // Description
+            preparedStatement.setString(7, "Scheduled"); // Status (assuming it's 'Requested' by default)
+
+            // Execute the update
+            int rowsInserted = preparedStatement.executeUpdate();
+            System.out.println("Rows inserted: " + rowsInserted);
+        } catch (Exception e) {
+            System.err.println("Error while adding appointment record: " + e.getMessage());
+        }
+    }
 
 }
 

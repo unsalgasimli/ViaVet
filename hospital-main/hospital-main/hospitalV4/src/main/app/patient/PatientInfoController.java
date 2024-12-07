@@ -96,19 +96,14 @@ public class PatientInfoController implements Initializable {
     private ObservableList<PatientInfoController.Pet> getPetData() {
         petTable.getItems().clear();
         ObservableList<PatientInfoController.Pet> data = FXCollections.observableArrayList();
+
         String petListData = DataBase.getPetList("patient");
-
-        // Print raw data to debug the format
-        System.out.println("Pet List Data: " + petListData);
-
         String[] text = petListData.split("\n");  // Split by newline to separate each pet
 
         for (String petDetails : text) {
             // Skip empty lines
             if (petDetails.trim().isEmpty()) continue;
 
-            // Print each petDetails to check how it's split
-            System.out.println("Pet Details: " + petDetails);
 
             try {
                 String[] petInfo = petDetails.split("\\|");  // Split by pipe ("|")

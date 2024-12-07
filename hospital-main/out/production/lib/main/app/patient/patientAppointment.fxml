@@ -123,7 +123,7 @@
                               </HBox>
                               <VBox id="insiderVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button id="selectionBtn" mnemonicParsing="false"  text="Request">
+                                    <Button id="selectionBtn" mnemonicParsing="false"  text="Request" onAction="#requestAppointment">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
