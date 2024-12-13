@@ -24,7 +24,7 @@ public class App extends Application {
 
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/main/app/admin/adminStaff.fxml"));
         try {
-            initStage(stage, loader, "/main/resources/app.css");
+            initStage(stage, loader, "/main/app/admin/admin.css");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +34,7 @@ public class App extends Application {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/main/app/admin/adminPatient.fxml"));
         try {
-            initStage(stage, loader, "/main/resources/app.css");
+            initStage(stage, loader, "/main/app/admin/admin.css");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -126,14 +126,17 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         initializeScreenSize();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/logreg/appLogin.fxml"));
-        initStage(stage, loader, "/main/app/logreg/login.css");
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/logreg/appLogin.fxml"));
+//        initStage(stage, loader, "/main/app/logreg/login.css");
 
 
 
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/app/patient/patientAppointment.fxml"));
-//            initStage(stage, loader, "/main/resources/app.css");
-
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/main/app/admin/adminStaff.fxml"));
+        try {
+            initStage(stage, loader, "/main/app/admin/admin.css");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void initializeScreenSize() {
 

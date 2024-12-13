@@ -61,7 +61,7 @@ public class AdminPatientController implements Initializable {
         App.logOpen();
     }
     //ADDS STAFF AS A ADMIN
-    public void addStaff(ActionEvent event) {
+    public void addPatient(ActionEvent event) {
 
         if(!(nameField.getText().isEmpty() || surnameField.getText().isEmpty() || middlenameField.getText().isEmpty() || datePicker.getValue()==null || numberField.getText().isEmpty() || passwordField.getText().isEmpty())){
             if(containsOnlyNumbers(numberField)){

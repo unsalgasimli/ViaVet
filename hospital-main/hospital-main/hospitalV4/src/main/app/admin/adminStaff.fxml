@@ -10,15 +10,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.PasswordField?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1536.0" stylesheets="@../../resources/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.app.admin.AdminStaffController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.effect.GaussianBlur?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1536.0" stylesheets="@../../app/admin/admin.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.app.admin.AdminStaffController">
    <children>
       <StackPane id="stackPane" prefHeight="864.0" prefWidth="1536.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane id="borderPane" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
+            <ImageView id="image" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/eq.jpg" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <effect>
+                  <GaussianBlur radius="20" />
+               </effect>
+            </ImageView>
+            <BorderPane id="borderPane" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <HBox id="botHbox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+                  <HBox id="botHbox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <TableView id="table-view" fx:id="staffTable" prefHeight="197.0" prefWidth="682.0">
                            <columns>
@@ -32,37 +47,37 @@
                         </TableView>
                         <VBox id="rightVbox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="120.0">
                            <children>
-                              <TextField id="descField" fx:id="nameField" alignment="CENTER" promptText="Name">
+                              <TextField fx:id="nameField" alignment="CENTER" promptText="Name">
                                  <VBox.margin>
                                     <Insets top="70.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField id="descField" fx:id="surnameField" alignment="CENTER" promptText="Surname">
+                              <TextField fx:id="surnameField" alignment="CENTER" promptText="Surname">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField id="descField" fx:id="numberField" alignment="CENTER" promptText="Number">
+                              <TextField fx:id="numberField" alignment="CENTER" promptText="Number">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </TextField>
-                              <PasswordField id="descField" fx:id="passwordField" alignment="CENTER" promptText="Password">
+                              <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Password">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </PasswordField>
-                              <Button id="selectionBtn" mnemonicParsing="false" onAction="#addStaff" text="ADD">
+                              <Button id="addBtn" mnemonicParsing="false" onAction="#addStaff" text="ADD">
                                  <VBox.margin>
                                     <Insets top="50.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button id="selectionBtn" fx:id="delBtn" mnemonicParsing="false" text="Delete">
+                              <Button id="deleteBtn" fx:id="delBtn" mnemonicParsing="false" text="Delete">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button id="selectionBtn" fx:id="idBtn" mnemonicParsing="false" text="Show ID">
+                              <Button id="showIdBtn" fx:id="idBtn" mnemonicParsing="false" text="Show ID">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -79,17 +94,14 @@
                   </HBox>
                </center>
                <top>
-                  <HBox id="topHbox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <HBox id="topHbox" >
                      <children>
-                        <Button id="appointmentBtnAd" fx:id="staffBtn" mnemonicParsing="false" text="Staff Managment" />
-                        <Button id="historyBtnAd" mnemonicParsing="false" onAction="#openPatient" text="Patient Managment" />
-                        <Button id="logoutBtnAd" mnemonicParsing="false" onAction="#logOut" text="Logout" />
+                        <Button id="adminTopBtnLeft" mnemonicParsing="false" text="Staff Management" />
+                        <Button id="adminTopBtnCenter" mnemonicParsing="false" onAction="#openPatient" text="Patient Management" />
+                        <Button id="adminTopBtnRight" mnemonicParsing="false" onAction="#logOut" text="Logout" />
                      </children>
                   </HBox>
                </top>
-               <StackPane.margin>
-                  <Insets bottom="40.0" left="100.0" right="100.0" top="40.0" />
-               </StackPane.margin>
             </BorderPane>
          </children>
       </StackPane>
