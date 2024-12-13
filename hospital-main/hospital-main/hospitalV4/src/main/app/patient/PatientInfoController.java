@@ -47,18 +47,18 @@ public class PatientInfoController implements Initializable {
         petTable.setItems(getPetData());
         deleteBtn.setOnAction(event -> deletePet(petTable,event));
 
+        MenuItem dogMenuItem = new MenuItem("Dog");
+        dogMenuItem.setOnAction(e -> handleMenuItemClick("dog"));
+        petMenu.getItems().add(dogMenuItem);
 
-        try (BufferedReader br = new BufferedReader(new FileReader("animals.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                MenuItem menuItem = new MenuItem(line);
-                String finalLine = line;
-                menuItem.setOnAction(e -> handleMenuItemClick(finalLine));
-                petMenu.getItems().add(menuItem);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MenuItem catMenuItem = new MenuItem("Cat");
+        catMenuItem.setOnAction(e -> handleMenuItemClick("cat"));
+        petMenu.getItems().add(catMenuItem);
+
+        MenuItem birdMenuItem = new MenuItem("Bird");
+        birdMenuItem.setOnAction(e -> handleMenuItemClick("bird"));
+        petMenu.getItems().add(birdMenuItem);
+
     }
 
     public void openPatientAppointment(ActionEvent event) throws Exception {
@@ -106,7 +106,7 @@ public class PatientInfoController implements Initializable {
 
 
             try {
-                String[] petInfo = petDetails.split("\\|");  // Split by pipe ("|")
+                String[] petInfo = petDetails.split(" ");
 
                 // Ensure there are exactly 3 parts: name, age, and type
                 if (petInfo.length == 3) {
