@@ -38,11 +38,11 @@
                      <children>
                         <TableView id="table-view" fx:id="patientTable" prefHeight="197.0" prefWidth="682.0">
                            <columns>
-                              <TableColumn fx:id="tableName" prefWidth="320" text="Name" />
-                              <TableColumn fx:id="tableSurname" prefWidth="320" text="Surname" />
-                              <TableColumn fx:id="tableMiddlename" prefWidth="320" text="Middlename" />
-                              <TableColumn fx:id="tableBday" prefWidth="320" text="Bday" />
-                              <TableColumn fx:id="tableNumber" prefWidth="320" text="Number" />
+                              <TableColumn fx:id="tableName" id = "tableColumn" prefWidth="320" text="Name" />
+                              <TableColumn fx:id="tableSurname" id = "tableColumn" prefWidth="320" text="Surname" />
+                              <TableColumn fx:id="tableMiddlename" id = "tableColumn" prefWidth="320" text="Middlename" />
+                              <TableColumn fx:id="tableBday" id = "tableColumn" prefWidth="320" text="Bday" />
+                              <TableColumn fx:id="tableNumber" id = "tableColumn" prefWidth="320" text="Number" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -50,47 +50,52 @@
                         </TableView>
                         <VBox id="rightVbox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="120.0">
                            <children>
-                              <TextField fx:id="nameField" alignment="CENTER" promptText="Name">
-                                 <VBox.margin>
-                                    <Insets top="70.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField fx:id="surnameField" alignment="CENTER" promptText="Surname">
+                              <TextField fx:id="nameField" id= "textField" alignment="CENTER" promptText="Name">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="middlenameField" alignment="CENTER" promptText="MiddleName">
+                              <TextField fx:id="surnameField" id= "textField" alignment="CENTER" promptText="Surname">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="numberField" alignment="CENTER" promptText="Number">
+                              <TextField fx:id="middlenameField" id= "textField" alignment="CENTER" promptText="MiddleName">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </TextField>
-                              <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Password">
+                              <TextField fx:id="numberField" id= "textField" alignment="CENTER" promptText="Number">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <PasswordField fx:id="passwordField" id= "textField" alignment="CENTER" promptText="Password">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </PasswordField>
-                              <DatePicker fx:id="datePicker" promptText="Date">
+                              <DatePicker fx:id="datePicker" id= "datePicker"  promptText="Date">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </DatePicker>
-                              <Button id="addBtn" mnemonicParsing="false" onAction="#addPatient" text="ADD">
+                              <Button id="AnyBtn" mnemonicParsing="false"  onAction="#addPatient" text="ADD">
                                  <VBox.margin>
                                     <Insets top="50.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button id="deleteBtn" fx:id="delBtn" mnemonicParsing="false" text="Delete">
+                              <Button id="AnyBtn" fx:id="delBtn" mnemonicParsing="false" text="Delete">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button id="showIdBtn" fx:id="idBtn" mnemonicParsing="false" text="Show ID">
+                              <Button id="AnyBtn" fx:id="idBtn" mnemonicParsing="false" text="Show ID">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button id="AnyBtn" fx:id="updateBtn" mnemonicParsing="false" text="Update">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>

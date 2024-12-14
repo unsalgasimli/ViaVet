@@ -69,7 +69,7 @@ public class PatientInfoController implements Initializable {
     }
 
     public void openPatientHistory(ActionEvent event) throws Exception {
-        App.openPatienHistory();
+        App.openPatientHistory();
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
 
@@ -83,7 +83,7 @@ public class PatientInfoController implements Initializable {
     }
 
     public void logOut(ActionEvent event) throws Exception {
-        App.logOpen();
+        App.openLogin();
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
 

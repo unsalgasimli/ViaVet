@@ -46,10 +46,12 @@ public class AdminStaffController implements Initializable {
     private TableColumn<Staff, String> tableTres;
 
     ConcreteClass concreteClass = new ConcreteClass();
+    private AdminStaffController.Staff selectedStaff;
 
     //USED FOR INITIALIZING VALUES OF TABLE ETC. OTHERWISE U GET POINTER ERROR
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("INIT");
 
         tableUno.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tableDos.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
@@ -59,7 +61,17 @@ public class AdminStaffController implements Initializable {
         // Initialize the staffTable
         staffTable.setItems(getStaffData());
         delBtn.setOnAction(event -> deleteStaff(staffTable, event));
-         idBtn.setOnAction(event -> showDetails(staffTable,event));
+        idBtn.setOnAction(event -> showDetails(staffTable, event));
+
+        staffTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedStaff = newValue;
+                nameField.setText(newValue.getName());
+                surnameField.setText(newValue.getSurname());
+                numberField.setText(newValue.getNumber());
+            }
+        });
+
 
     }
 
@@ -67,13 +79,13 @@ public class AdminStaffController implements Initializable {
     public void openPatient(ActionEvent event) {
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
-        App.openPatient();
+        App.openAdminPatient();
     }
 
     public void logOut(ActionEvent event) {
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
-        App.logOpen();
+        App.openLogin();
     }
 
     public void refresh() {
@@ -89,12 +101,10 @@ public class AdminStaffController implements Initializable {
         staffTable.getItems().clear();
         ObservableList<AdminStaffController.Staff> data = FXCollections.observableArrayList();
         String[] text = DataBase.getStaffList(LogController.activeID, false).split(" ");
-        System.out.println(text[0]);
-        System.out.println(text[1]);
         if (!text[0].equals("")) {
             for (int i = 0; i < text.length - 1; i += 3) {
-                System.out.println(text[i]);
-                data.add(new AdminStaffController.Staff(text[i], text[i + 1], text[i + 2]));
+
+                data.add(new AdminStaffController.Staff(text[i].trim(), text[i + 1].trim(), text[i + 2].trim()));
 
             }
         }
@@ -124,6 +134,31 @@ public class AdminStaffController implements Initializable {
             concreteClass.showAlert("TextFields not filled", event);
         }
     }
+
+    public static boolean containsOnlyNumbers(TextField textField) {
+        String text = textField.getText();
+        return text.matches("\\d*"); // This regex checks if the string contains only digits
+    }
+
+    public void updatePatient(ActionEvent event) {
+        if (selectedStaff != null) {
+            if (!(nameField.getText().isEmpty() || surnameField.getText().isEmpty() || numberField.getText().isEmpty())) {
+                if (containsOnlyNumbers(numberField)) {
+                    // Update the patient in the database
+                    DataBase.updateStaff(selectedStaff.getName(), selectedStaff.getSurname(), selectedStaff.getNumber(),
+                            nameField.getText(), surnameField.getText(), numberField.getText(), passwordField.getText());
+                    refresh();
+                } else {
+                    concreteClass.showAlert("Wrong number style", event);
+                }
+            } else {
+                concreteClass.showAlert("Fill the TextFields", event);
+            }
+        } else {
+            concreteClass.showAlert("No patient selected for update", event);
+        }
+    }
+
 
     public void showDetails(TableView<AdminStaffController.Staff> staffTable, ActionEvent event) {
         // Get the current stage

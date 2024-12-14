@@ -110,7 +110,7 @@ public class StaffAppointmentController implements Initializable {
     public void logOut(ActionEvent event) throws Exception {
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
-        App.logOpen();
+        App.openLogin();
     }
     public void openStaffInfo(ActionEvent event) throws Exception{
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();

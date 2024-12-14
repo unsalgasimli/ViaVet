@@ -6,7 +6,6 @@ import java.security.SecureRandom;
 import java.sql.*;
 import java.time.LocalDate;
 
-import static main.app.heart.App.openPatienHistory;
 import static main.app.logreg.LogController.activeID;
 
 public class DataBase {
@@ -329,7 +328,6 @@ public class DataBase {
             preparedStatement.setTime(3, Time.valueOf(time));
 
 
-
             // Execute the update
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println("Rows updated: " + rowsUpdated);
@@ -423,8 +421,6 @@ public class DataBase {
             // Set appointment date (assuming it's in the format 'YYYY-MM-DD')
 
 
-
-
             // Execute the update
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println("Rows inserted: " + rowsInserted);
@@ -502,10 +498,10 @@ public class DataBase {
 
             // Process the result set
             while (resultSet.next()) {
-                String details = resultSet.getString(1)+"|"+
-                              resultSet.getString(2)+"|"+
-                              resultSet.getString(3)+"|"+
-                              resultSet.getDate(4)+ "|";
+                String details = resultSet.getString(1) + "|" +
+                        resultSet.getString(2) + "|" +
+                        resultSet.getString(3) + "|" +
+                        resultSet.getDate(4) + "|";
                 result.append(details).append("\n");  // Using newline to separate each pet's details
             }
 
@@ -518,7 +514,7 @@ public class DataBase {
 
     public static void deleteHistory(String name, String pet, String info, String patient) {
 
-        if(!name.equals("owner")){
+        if (!name.equals("owner")) {
             name = DataBase.getStaffId(name);
         }
         int pet_id = Integer.parseInt((DataBase.getPetId(pet)).trim());
@@ -533,7 +529,6 @@ public class DataBase {
             preparedStatement.setString(1, activeID);  // Assuming activeID is the patient's ID
             preparedStatement.setInt(2, pet_id);   // Staff ID
             preparedStatement.setString(3, info);    // Pet ID
-
 
 
             // Execute the update
@@ -577,9 +572,9 @@ public class DataBase {
             // Process the result set
             while (resultSet.next()) {
                 String details = resultSet.getString(1)
-                        +" " + resultSet.getString(2)
-                        +" " + resultSet.getString(3)
-                        +" ";  // Remove any leading/trailing spaces
+                        + " " + resultSet.getString(2)
+                        + " " + resultSet.getString(3)
+                        + " ";  // Remove any leading/trailing spaces
                 result.append(details).append("\n");  // Using newline to separate each pet's details
             }
 
@@ -606,7 +601,6 @@ public class DataBase {
             preparedStatement.setString(3, surname);
             preparedStatement.setString(4, number);
             preparedStatement.setString(5, password);
-
 
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -660,7 +654,7 @@ public class DataBase {
 
             // Process the result set
             if (resultSet.next()) {
-                String info = resultSet.getString(1)+" : "+ resultSet.getString(2);  // Fetch and clean the "info" column value
+                String info = resultSet.getString(1) + " : " + resultSet.getString(2);  // Fetch and clean the "info" column value
                 result.append(info);
             } else {
                 result.append("No information found for the selected appointment.");
@@ -695,11 +689,11 @@ public class DataBase {
             // Process the result set
             while (resultSet.next()) {
                 String details = resultSet.getString(1)
-                        +" " + resultSet.getString(2)
-                        +" " + resultSet.getString(3)
-                        +" " + resultSet.getString(4)
-                        +" " + resultSet.getString(5)
-                        +" ";  // Remove any leading/trailing spaces
+                        + " " + resultSet.getString(2)
+                        + " " + resultSet.getString(3)
+                        + " " + resultSet.getString(4)
+                        + " " + resultSet.getString(5)
+                        + " ";  // Remove any leading/trailing spaces
                 result.append(details).append("\n");  // Using newline to separate each pet's details
             }
 
@@ -753,7 +747,7 @@ public class DataBase {
 
             // Process the result set
             if (resultSet.next()) {
-                String info = resultSet.getString(1)+" : "+ resultSet.getString(2);  // Fetch and clean the "info" column value
+                String info = resultSet.getString(1) + " : " + resultSet.getString(2);  // Fetch and clean the "info" column value
                 result.append(info);
             } else {
                 result.append("No information found for the selected patient.");
@@ -768,6 +762,64 @@ public class DataBase {
         }
 
         return result.toString();
+    }
+
+    public static void updatePatient(String orgName, String orgSurname, String orgMiddleName, String name, String surname, String middleName, String bday, String number, String password) {
+
+        try (Connection connection = dbManager.getConnection()) {
+            // Query to update the appointment record
+            String updateQuery = "UPDATE patient_list SET first_name = ? , last_name = ? ,middle_name = ? ,date_of_birth = ?,phone_number = ?,password = ? WHERE first_name = ? AND last_name = ? AND middle_name = ? ;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+
+
+            // Set parameters
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, surname);
+            preparedStatement.setString(3, middleName);
+            preparedStatement.setDate(4, Date.valueOf(bday));
+            preparedStatement.setString(5, number);
+            preparedStatement.setString(6, password);
+            preparedStatement.setString(7, orgName);
+            preparedStatement.setString(8, orgSurname);
+            preparedStatement.setString(9, orgMiddleName);
+            System.out.println(preparedStatement);
+
+
+            // Execute the update
+            int rowsUpdated = preparedStatement.executeUpdate();
+            System.out.println("Rows updated: " + rowsUpdated);
+        } catch (Exception e) {
+            System.err.println("Error while updating patient record: " + e.getMessage());
+        }
+    }
+
+    public static void updateStaff(String orgName, String orgSurname, String orgNumber, String name, String surname, String number, String password) {
+
+        try (Connection connection = dbManager.getConnection()) {
+            // Query to update the appointment record
+            String updateQuery = "UPDATE staff_list SET first_name = ? , last_name = ? ,phone_number = ?,password = ? WHERE first_name = ? AND last_name = ? AND phone_number = ? ;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+
+
+            // Set parameters
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, surname);
+            preparedStatement.setString(3, number);
+            preparedStatement.setString(4, password);
+            preparedStatement.setString(5, orgName);
+            preparedStatement.setString(6, orgSurname);
+            preparedStatement.setString(7, orgNumber);
+            System.out.println(preparedStatement);
+
+
+            // Execute the update
+            int rowsUpdated = preparedStatement.executeUpdate();
+            System.out.println("Rows updated: " + rowsUpdated);
+        } catch (Exception e) {
+            System.err.println("Error while updating staff record: " + e.getMessage());
+        }
     }
 }
 

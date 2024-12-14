@@ -39,7 +39,7 @@ public class LogController extends App {
         stage.close();
 
         // Open the registration page
-        regOpen();
+        openRegister();
     }
 
 
@@ -69,7 +69,9 @@ public class LogController extends App {
                         activeID = idF;
                         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
                         stage.close();
-                        openMain();
+                        System.out.println("CAGIRDII");
+                        openAdminStaff();
+                        System.out.println("OLDUU");
                         break;
                     }
                     default:{

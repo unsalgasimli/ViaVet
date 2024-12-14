@@ -54,21 +54,21 @@ public class PatientAppointmentController implements Initializable {
     ConcreteClass concreteClass = new ConcreteClass();
 
     public void logOut(ActionEvent event) {
-        App.logOpen();
+        App.openLogin();
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
 
     }
 
     public void openPatientInfo(ActionEvent event) {
-        App.openPatienInfo();
+        App.openPatientInfo();
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
 
     }
 
     public void openPatientHistory(ActionEvent event) {
-        App.openPatienHistory();
+        App.openPatientHistory();
         Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         stage.close();
 

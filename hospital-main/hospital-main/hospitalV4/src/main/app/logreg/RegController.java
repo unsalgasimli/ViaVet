@@ -33,7 +33,7 @@ public class RegController extends App {
                 concreteInstance.showIDAlert(event);
                 Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
                 stage.close();
-                logOpen();
+                openLogin();
             } catch (Exception e) {
                 System.err.println(e);
             }
