@@ -1,6 +1,3 @@
-#stackPane{
-    -fx-background-color: #0E1F26 ;
-}
 #borderPane{
     -fx-background-radius: 25;
     -fx-background-color: transparent;
@@ -15,18 +12,8 @@
     -fx-max-height: 80em;
 
 }
-#topHbox{
-    -fx-background-radius: 25 25 0 0;
-    -fx-background-color: transparent;
-    -fx-min-width: 45em;
-    -fx-pref-width: 119.1em;
-    -fx-max-width: 119.1em;
-    -fx-min-height: 2em;
-    -fx-pref-height: 4em;
-    -fx-max-height: 4em;
-}
-#botHbox{
-    -fx-border-color: #FF4ED7; /* Neon pink to match the theme */
+#botHbox {
+    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1; /* Top transparent, others pink */
     -fx-background-color: rgba(0, 0, 0, 0.5); /* Slightly darker transparent background */
     -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
     -fx-background-radius: 0 0 25 25;
@@ -37,12 +24,7 @@
     -fx-min-height: 40em;
     -fx-pref-height: 75em;
     -fx-max-height: 75em;
-}
-
-#botHbox:hover {
-    -fx-border-radius: 0  0 15px 15px;
-    -fx-border-width: 5px;
-    -fx-border-color: #FF79F1; /* Subtle brighter pink on hover */
+    -fx-border-insets: -0.15em; /* Border overlaps the content */
 }
 #infoVbox{
     -fx-min-width: 15em;
@@ -81,165 +63,58 @@
     -fx-border-radius: 15;
 
 }
-#appointmentBtn{
-
-    -fx-background-radius: 25 0 0 0;
-    -fx-border-radius: 25 0 0 0;
-    -fx-background-color: #0916D;
-    -fx-min-height: 1em;
-    -fx-pref-height:4em;
-    -fx-max-height:4em;
-    -fx-min-width: 7em;
-    -fx-pref-width: 36em;
-    -fx-max-width: 36em;
-    -fx-text-fill: white;
-}
-#appointmentBtn:hover{
-    -fx-background-color:#275565 ;
-}
-
-#historyBtn{
-
-    -fx-background-radius: 0 0 0 0;
-    -fx-border-radius: 0 0 0 0;
-    -fx-background-color: #0916D;
-    -fx-min-height: 1em;
-    -fx-pref-height:4em;
-    -fx-max-height:4em;
-    -fx-min-width: 7em;
-    -fx-pref-width: 36em;
-    -fx-max-width: 36em;
-    -fx-text-fill: white;
-}
-#historyBtn:hover{
-    -fx-background-color:#275565 ;
-}
-#infoBtn{
-    -fx-background-radius: 0 0 0 0;
-    -fx-border-radius: 0 0 0 0;
-    -fx-background-color: #0916D;
-    -fx-min-height: 1em;
-    -fx-pref-height:4em;
-    -fx-max-height:4em;
-    -fx-min-width: 7em;
-    -fx-pref-width: 36em;
-    -fx-max-width: 36em;
-    -fx-text-fill: white;
-}
-#infoBtn:hover{
-    -fx-background-color:#275565 ;
-}
-#logoutBtn{
-    -fx-background-radius: 0 25 0 0;
-    -fx-border-radius: 0 25 0 0;
-    -fx-background-color: #0916D;
-    -fx-min-height: 2em;
-    -fx-pref-height: 4em;
-    -fx-max-height: 4em;
-    -fx-min-width: 4em;
-    -fx-pref-width: 12em;
-    -fx-max-width: 12em;
-    -fx-text-fill: white;
-
-}
-#logoutBtn:hover{
-    -fx-background-color:#275565 ;
-
-}
 
 
 
-
-#appointmentBtnAd{
-
-    -fx-background-radius: 25 0 0 0;
-    -fx-border-radius: 25 0 0 0;
-    -fx-background-color: #0916D;
-    -fx-min-height: 1em;
-    -fx-pref-height:4em;
-    -fx-max-height:4em;
-    -fx-min-width: 7em;
-    -fx-pref-width: 46em;
-    -fx-max-width: 46em;
-    -fx-text-fill: white;
-}
-#appointmentBtnAd:hover{
-    -fx-background-color:#275565 ;
+.table-view {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
-#historyBtnAd{
-
-    -fx-background-radius: 0 0 0 0;
-    -fx-border-radius: 0 0 0 0;
-    -fx-background-color: #0916D;
-    -fx-min-height: 1em;
-    -fx-pref-height:4em;
-    -fx-max-height:4em;
-    -fx-min-width: 7em;
-    -fx-pref-width: 46em;
-    -fx-max-width: 46em;
-    -fx-text-fill: white;
-}
-#historyBtnAd:hover{
-    -fx-background-color:#275565 ;
+.table-view.table-row-cell {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
-#logoutBtnAd{
-    -fx-background-radius: 0 25 0 0;
-    -fx-border-radius: 0 25 0 0;
-    -fx-background-color: #0916D;
-    -fx-min-height: 2em;
-    -fx-pref-height: 4em;
-    -fx-max-height: 4em;
-    -fx-min-width: 4em;
-    -fx-pref-width: 22em;
-    -fx-max-width: 22em;
-    -fx-text-fill: white;
+.table-view.column-header {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10
+}
 
-}
-#logoutBtnAd:hover{
-    -fx-background-color:#275565 ;
-
-}
-.table-view{
-    -fx-background-radius: 25;
-    -fx-border-radius: 25;
-}
-.table-view.table-row-cell{
-    -fx-background-radius: 25;
-    -fx-border-radius: 25;
-}
-.table-view.column-header{
-    -fx-background-radius: 25;
-    -fx-border-radius: 25;
-}
-#table-view .column-header .label{
+#table-view .column-header .label {
     -fx-text-fill: white;
 }
 
 .table-view.column-header-background.filler {
     -fx-background-color: transparent;
 }
+
 .table-view.corner {
     -fx-background-color: transparent;
 }
-.table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom, #204552, #1C3A45);
-    -fx-background-radius: 25 25 0 0;
+
+.table-view .column-header-background {
+    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 90, 215, 0.8), 10, 0, 0, 4); /* Glow effect */
+    -fx-background-radius: 10 10 0 0;
 
 
 }
+
 .table-view .column-header {
     -fx-background-color: transparent;
 }
-.table-view.column-header-background{
+
+.table-view.column-header-background {
     -fx-background-color: transparent;
 }
-.table-view .table-cell{
+
+.table-view .table-cell {
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
     -fx-alignment: center;
 }
+
 .table-row-cell:hover {
     -fx-border-color: #353141;
     -fx-border-radius: 5;
@@ -247,25 +122,30 @@
     -fx-scale-y: 1.05;
     -fx-scale-x: 1.05;
 }
-.table-row-cell:odd{
+
+.table-row-cell:odd {
     -fx-background-color: #93f9b911;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
-.table-row-cell:odd:hover{
-    -fx-background-color:#E0E8EA;
+
+.table-row-cell:odd:hover {
+    -fx-background-color: #E0E8EA;
 
 }
-.table-row-cell:even{
+
+.table-row-cell:even {
     -fx-background-color: #1dbbdd11;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
-.table-row-cell:even:hover{
-    -fx-background-color:#ABC1C7;
+
+.table-row-cell:even:hover {
+    -fx-background-color: #ABC1C7;
 }
-.table-row-cell:focused{
-    -fx-background-color:#ABC1C7;
+
+.table-row-cell:focused {
+    -fx-background-color: #ABC1C7;
     -fx-text-fill: black;
 }
 
@@ -277,18 +157,22 @@
 .table-view .virtual-flow .scroll-bar:horizontal .track-background {
     -fx-background-color: transparent;
 }
+
 .table-view .virtual-flow .scroll-bar .increment-button,
 .table-view .virtual-flow .scroll-bar .decrement-button {
     -fx-opacity: 0;
     -fx-padding: 2;
 }
-.table-view .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color:  linear-gradient(to bottom, #204552, #1C3A45);
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #204552, #1C3A45);
 }
+
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
-    -fx-background-color:  linear-gradient(to right, #204552, #1C3A45);
+    -fx-background-color: linear-gradient(to right, #204552, #1C3A45);
 }
-#table-view{
+
+#table-view {
     -fx-min-width: 10em;
     -fx-pref-width: 70em;
     -fx-max-width: 70em;
@@ -296,12 +180,19 @@
     -fx-pref-height: 60em;
     -fx-max-height: 60em;
 }
-    #tableColumn{
 
-        -fx-min-height: 1em;
-        -fx-pref-height: 3em;
-        -fx-max-height: 3em;
-    }
+#tableColumn.column-header {
+
+    -fx-min-height: 2em;
+    -fx-pref-height: 3.5em;
+    -fx-max-height: 3.5em;
+}
+#tableColumn{
+
+    -fx-min-height: 2em;
+    -fx-pref-height: 3em;
+    -fx-max-height: 3em;
+}
 
 
 
@@ -321,6 +212,7 @@
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
     -fx-font-size: 14px; /* Adjusted font size */
+    -fx-text-alignment: center;
     -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
 
 
@@ -386,8 +278,7 @@
     -fx-border-color: #FF4ED7; /* Brighter pink for hover */
     -fx-border-radius: 25px 0 0 25px;
     -fx-background-radius: 25px 0 0 25px;  /* Fixed border radius */
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
+
 }
 #datePicker:focused{
     -fx-border-radius: 25px 0 0 25px;
@@ -429,7 +320,7 @@
     -fx-background-color: #1C3A45; /* Change the background color on hover */
 }
 #menuBtn .context-menu{
-    -fx-background-color: #0916D;
+    -fx-background-color: #D44DFF;
 
 }
 
@@ -506,3 +397,78 @@
     -fx-background-color: #1C3A45;
 }
 
+#topHbox {
+    -fx-background-radius: 25 25 0 0;
+    -fx-background-color: transparent;
+    -fx-min-width: 45em;
+    -fx-pref-width: 120em; /* Adjust to your layout needs */
+    -fx-max-width: 120em;
+    -fx-min-height: 3em;
+    -fx-pref-height: 5em;
+    -fx-max-height: 5em;
+    -fx-border-color: #FF4ED7 #FF4ED7 transparent #FF4ED7; /* Top transparent, others pink */
+    -fx-border-insets: -0.15em; /* Border overlaps the content */
+    -fx-border-radius: 25 25 0 0;
+}
+
+/* Hover effect for #botHbox and #topHbox */
+/* Hover effect for #botHbox with transparent top border */
+#borderPane:hover #botHbox {
+
+    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1; /* Top transparent, others pink */
+    -fx-border-width: 3px; /* Uniform border width */
+    -fx-border-radius: 0 0 25 25; /* Rounded bottom corners */
+}
+
+/* Hover effect for #topHbox with transparent bottom border */
+#borderPane:hover #topHbox {
+
+    -fx-border-color: #FF79F1 #FF79F1 transparent #FF79F1; /* Bottom transparent, others pink */
+    -fx-border-width: 3px; /* Uniform border width */
+    -fx-border-radius: 25 25 0 0
+}
+
+
+#PatientTopBtnLeft, #PatientTopBtnCenter, #PatientTopBtnRight {
+    -fx-background-color: rgba(0, 0, 0, 0.7); /* Transparent dark background */
+    -fx-text-fill: white; /* Default text color */
+    -fx-background-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0; /* Corner radii per button */
+    -fx-border-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0; /* Same corner radii */
+    -fx-min-height: 3em;
+    -fx-pref-height: 5em;
+    -fx-max-height: 5em;
+    -fx-min-width: 15em;
+    -fx-pref-width: 121em;
+    -fx-cursor: hand; /* Pointer cursor */
+    -fx-effect: none; /* No glow by default */
+    -fx-transition: all 0.3s ease-in-out; /* Smooth transitions */
+}
+
+/* Hover effect: subtle transparency and gradient */
+#PatientTopBtnLeft:hover, #PatientTopBtnCenter:hover, #PatientTopBtnRight:hover {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 79, 241, 0.4), rgba(255, 78, 215, 0.2)); /* Subtle gradient */
+    -fx-text-fill: rgba(255, 255, 255, 0.85); /* Slightly brighter text */
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 4, 0.2, 0, 1); /* Soft glow */
+}
+
+/* Text scaling on hover for emphasis */
+#PatientTopBtnLeft:hover .text, #PatientTopBtnCenter:hover .text, #PatientTopBtnRight:hover .text {
+    -fx-scale-x: 1.05; /* Gentle text scale */
+    -fx-scale-y: 1.05; /* Gentle text scale */
+}
+
+/* Button-specific styles */
+#PatientTopBtnLeft {
+    -fx-background-radius: 25 0 0 0; /* Top-left rounded */
+    -fx-border-radius: 25 0 0 0; /* Border matching background */
+}
+
+#PatientTopBtnCenter {
+    -fx-background-radius: 0; /* Square button */
+    -fx-border-radius: 0; /* Matching square border */
+}
+
+#PatientTopBtnRight {
+    -fx-background-radius: 0 25 0 0; /* Top-right rounded */
+    -fx-border-radius: 0 25 0 0; /* Border matching background */
+}

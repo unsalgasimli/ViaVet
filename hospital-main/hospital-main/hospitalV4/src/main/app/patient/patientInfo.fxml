@@ -13,18 +13,32 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Rectangle2D?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../../resources/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.app.patient.PatientInfoController">
    <children>
       <StackPane id="stackPane" layoutX="-14.0" layoutY="-3.0" prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <ImageView id="image" depthTest="ENABLE" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/eq.jpg" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <effect>
+                  <javafx.scene.effect.GaussianBlur radius="20" />
+               </effect>
+            </ImageView>
             <BorderPane id="borderPane" prefHeight="200.0" prefWidth="200.0">
                <top>
                   <HBox id="topHbox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button id="appointmentBtn" mnemonicParsing="false" onAction="#openPatientAppointment" text="Appoint" />
-                        <Button id="historyBtn" mnemonicParsing="false" onAction="#openPatientHistory" text="History" />
-                        <Button id="infoBtn" mnemonicParsing="false" text="Info" />
-                        <Button id="logoutBtn" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+                        <Button id="PatientTopBtnLeft" mnemonicParsing="false" onAction="#openPatientAppointment" text="Appoint" />
+                        <Button id="PatientTopBtnCenter" mnemonicParsing="false" onAction="#openPatientHistory" text="History" />
+                        <Button id="PatientTopBtnCenter" mnemonicParsing="false" text="Info" />
+                        <Button id="PatientTopBtnRight" mnemonicParsing="false" onAction="#logOut" text="Log out" />
                      </children>
                   </HBox>
                </top>

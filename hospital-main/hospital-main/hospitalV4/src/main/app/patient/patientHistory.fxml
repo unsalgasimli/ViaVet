@@ -13,18 +13,32 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Rectangle2D?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../../resources/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.app.patient.PatientHistoryController">
    <children>
-      <StackPane id="stackPane" prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane id="borderPane" prefHeight="1080.0" prefWidth="1920.0">
+            <ImageView id="image" depthTest="ENABLE" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/eq.jpg" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <effect>
+                  <javafx.scene.effect.GaussianBlur radius="20" />
+               </effect>
+            </ImageView>
+            <BorderPane id="borderPane" StackPane.alignment="CENTER">
                <top>
-                  <HBox id="topHbox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <HBox id="topHbox"  alignment="CENTER" fillHeight="false" BorderPane.alignment="CENTER">
                      <children>
-                        <Button id="appointmentBtn" mnemonicParsing="false" onAction="#openPatientAppointment" text="Appointment" />
-                        <Button id="historyBtn" mnemonicParsing="false" text="History" />
-                        <Button id="infoBtn" mnemonicParsing="false" onAction="#openPatientInfo" text="Info" />
-                        <Button id="logoutBtn" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+                        <Button id="PatientTopBtnLeft" mnemonicParsing="false" onAction="#openPatientAppointment" text="Appointment" />
+                        <Button id="PatientTopBtnCenter" mnemonicParsing="false" text="History" />
+                        <Button id="PatientTopBtnCenter" mnemonicParsing="false" onAction="#openPatientInfo" text="Info" />
+                        <Button id="PatientTopBtnRight" mnemonicParsing="false" onAction="#logOut" text="Log out" />
                      </children>
                   </HBox>
                </top>
@@ -33,10 +47,10 @@
                      <children>
                         <TableView id="table-view" fx:id="HistoryTable" prefHeight="482.0" prefWidth="544.0">
                            <columns>
-                              <TableColumn id="tableColumn" fx:id="tableOne" prefWidth="120.79996186494827" text="Doctor" />
-                              <TableColumn id="tableColumn" fx:id="tableTwo" prefWidth="120.60011291503906" text="Pet" />
-                              <TableColumn id="tableColumn" fx:id="tableThree" prefWidth="120.60011291503906" text="Date" />
-                              <TableColumn id="tableColumn" fx:id="tableFour" prefWidth="120.0000915527344" text="Info" />
+                              <TableColumn id="tableColumn" fx:id="tableOne" prefWidth="60.79996186494827" text="Doctor" />
+                              <TableColumn id="tableColumn" fx:id="tableTwo" prefWidth="60.60011291503906" text="Pet" />
+                              <TableColumn id="tableColumn" fx:id="tableThree" prefWidth="60.60011291503906" text="Date" />
+                              <TableColumn id="tableColumn" fx:id="tableFour" prefWidth="240.0000915527344" text="Info" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

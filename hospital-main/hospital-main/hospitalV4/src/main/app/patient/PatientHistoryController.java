@@ -68,22 +68,15 @@ public class PatientHistoryController implements Initializable {
 
     public void openPatientAppointment(ActionEvent event) throws Exception {
         App.openPatientAppointment();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
 
     }
 
     public void openPatientInfo(ActionEvent event) throws Exception {
         App.openPatientInfo();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
-
     }
 
     public void logOut(ActionEvent event) throws Exception {
         App.openLogin();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
 
     }
 

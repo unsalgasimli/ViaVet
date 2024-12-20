@@ -28,6 +28,7 @@ public class App extends Application {
 
         changeScene("/main/app/logreg/appLogin.fxml", "/main/app/logreg/login.css");
 
+
     }
 
     /**
@@ -66,30 +67,28 @@ public class App extends Application {
                 newScene.getStylesheets().add(App.class.getResource(cssSource).toExternalForm());
             }
 
+            // Save fullscreen state
+            boolean wasFullScreen = primaryStage.isFullScreen();
+
             // Set the new scene
-            if (primaryStage.getScene() == null) {
-                primaryStage.setScene(newScene);
-                primaryStage.setFullScreen(true);  // Ensure fullscreen mode for the first scene
-                primaryStage.show();
-            } else {
-                // Apply fade transition if there's an existing scene
-                primaryStage.setScene(newScene);
-                primaryStage.setFullScreen(true);  // Ensure fullscreen mode for the first scene
-                primaryStage.show();
-//                applyFadeTransition(primaryStage.getScene(), rootLayout, newScene);
+            primaryStage.setScene(newScene);
+
+            // Restore fullscreen state
+            if (wasFullScreen) {
+                primaryStage.setFullScreen(true);
             }
 
-            // Ensure the stage is shown and fullscreen is applied
+            // Show the stage if not already visible
             if (!primaryStage.isShowing()) {
                 primaryStage.show();
             }
-            primaryStage.setFullScreen(true);  // Ensure fullscreen mode for every scene
 
         } catch (IOException e) {
             System.err.println("Error changing scene: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
 
 

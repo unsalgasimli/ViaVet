@@ -32,18 +32,14 @@
 //
 //
 //    public void openStaffAppointment(ActionEvent event) throws Exception{
-//        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-//        stage.close();
 //        App.openStaffAppointment();
 //    }
 //    public void openStaffHistory(ActionEvent event) throws Exception{
-//        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
+//
 //        App.openStaffHistory();
 //    }
 //    public void logOut(ActionEvent event) throws Exception {
-//        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-//        stage.close();
-//        App.logOpen();
+//        App.openLogin();
 //    }
 //
 //
@@ -55,32 +51,32 @@
 //
 //    public void update(){
 //        if(!(nameField.getText().isEmpty() || surnameField.getText().isEmpty() || numberField.getText().isEmpty() || passwordField.getText().isEmpty())){
-//            DataBase.updateStaff(nameField.getText(),surnameField.getText(),numberField.getText(),passwordField.getText());
+//         //   DataBase.updateStaff(nameField.getText(),surnameField.getText(),numberField.getText(),passwordField.getText());
 //            refresh();
 //        }else{
 //
 //        }
 //    }
 //    public void delete(){
-//        DataBase.deleteStaff(nameField.getText(),surnameField.getText());
+//  //     DataBase.deleteStaff(nameField.getText(),surnameField.getText());
 //    }
 //
 //    @Override
 //    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        String[] allInfo= DataBase.getUserInfo(LogController.activeID,"staff").split(" ");
-//        nameField.setText(allInfo[0]);
-//        surnameField.setText(allInfo[1]);
-//        numberField.setText(allInfo[2]);
-//        passwordField.setText(allInfo[3]);
+////       String[] allInfo= DataBase.getUserInfo(LogController.activeID,"staff").split(" ");
+////        nameField.setText(allInfo[0]);
+////        surnameField.setText(allInfo[1]);
+////        numberField.setText(allInfo[2]);
+////        passwordField.setText(allInfo[3]);
 //
 //    }
 //
 //    private void refresh() {
-//        String[] allInfo= DataBase.getUserInfo(LogController.activeID,"staff").split(" ");
-//        nameField.setText(allInfo[0]);
-//        surnameField.setText(allInfo[1]);
-//        nameField.setText(allInfo[2]);
-//        passwordField.setText(allInfo[3]);
+////        String[] allInfo= DataBase.getUserInfo(LogController.activeID,"staff").split(" ");
+////        nameField.setText(allInfo[0]);
+////        surnameField.setText(allInfo[1]);
+////        nameField.setText(allInfo[2]);
+////        passwordField.setText(allInfo[3]);
 //
 //    }
 //}

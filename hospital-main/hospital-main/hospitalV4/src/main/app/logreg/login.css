@@ -114,7 +114,6 @@
     -fx-font-size: 5em;
     -fx-fill: #FF4ED7; /* Brighter pink */
     -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 10, 0, 0, 5);
-    -fx-text-alignment: top;
     -fx-text-origin: center;
 }
 

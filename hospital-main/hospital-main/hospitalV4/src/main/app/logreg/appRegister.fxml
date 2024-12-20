@@ -37,7 +37,7 @@
             <!-- Registration Form -->
             <VBox id="vboxMain" fx:id="vboxMain" >
                <children>
-                  <Text id="text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER">
+                  <Text id="text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER" onMouseClicked="#openLog">
                      <font>
                         <Font size="68.0" />
                      </font>

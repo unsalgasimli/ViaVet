@@ -51,7 +51,6 @@ public class AdminStaffController implements Initializable {
     //USED FOR INITIALIZING VALUES OF TABLE ETC. OTHERWISE U GET POINTER ERROR
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("INIT");
 
         tableUno.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tableDos.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());

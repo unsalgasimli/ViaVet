@@ -3,6 +3,7 @@ package main.app.logreg;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.app.heart.App;
 import main.app.heart.ConcreteClass;
@@ -31,8 +32,6 @@ public class RegController extends App {
                 DataBase.addPatient(nameRField.getText(), surnameRField.getText(), mnameRField.getText(), dPickerR.getValue(), numberRField.getText(), passwordRField.getText());
                 ConcreteClass concreteInstance = new ConcreteClass();
                 concreteInstance.showIDAlert(event);
-                Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-                stage.close();
                 openLogin();
             } catch (Exception e) {
                 System.err.println(e);
@@ -83,4 +82,7 @@ public class RegController extends App {
     }
 
 
+    public void openLog(MouseEvent mouseEvent) {
+        App.openLogin();
+    }
 }

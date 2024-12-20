@@ -75,21 +75,13 @@ public class StaffHistoryController implements Initializable {
     }
 
     public void openStaffAppointment(ActionEvent event) throws Exception {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         App.openStaffAppointment();
-        stage.close();
     }
 
-    public void openStaffInfo(ActionEvent event) throws Exception {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        App.openStaffInfo();
-        stage.close();
-    }
+
 
     public void logOut(ActionEvent event) throws Exception {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         App.openLogin();
-        stage.close();
     }
 
 
@@ -99,7 +91,7 @@ public class StaffHistoryController implements Initializable {
         if (selectedPet != null && datePicker.getValue() != null && !infoField.getText().isEmpty()) {
             String owner = selectedPet.getOwner();
             String petName = selectedPet.getpetName();
-        //    DataBase.addHistory(owner, petName, datePicker.getValue() + ":" + infoField.getText(), "staff");
+            DataBase.addHistoryStaff(owner.trim(), petName.trim(),infoField.getText().trim(), datePicker.getValue());
         } else {
             concreteClass.showAlert("No row selected",event);
         }
@@ -110,10 +102,10 @@ public class StaffHistoryController implements Initializable {
     public void deleteHistory(TableView<StaffHistoryController.History> tableView,ActionEvent event) {
         StaffHistoryController.History selectedHistory = tableView.getSelectionModel().getSelectedItem();
         if (selectedHistory != null) {
-            String id = LogController.activeID;
+            String owner = selectedHistory.getDoctor();
             String pet = selectedHistory.getPet();
             String info = selectedHistory.getInfo();
-            DataBase.deleteHistory(id, pet, info, "staff");
+            DataBase.deleteHistory(owner, pet, info);
             refreshPatientHistory();
         } else {
             concreteClass.showAlert("No row selected",event);
@@ -133,9 +125,9 @@ public class StaffHistoryController implements Initializable {
     private ObservableList<StaffHistoryController.History> getHistoryData() {
         HistoryTable.getItems().clear();
         ObservableList<StaffHistoryController.History> data = FXCollections.observableArrayList();
-        String[] text = DataBase.getHistoryList(LogController.activeID).split(" ");
+        String[] text = DataBase.getAllHistoryList().split("○");
         if (!text[0].equals("")) {
-            for (int i = 0; i < text.length; i += 3) {
+            for (int i = 0; i < text.length-1; i += 3) {
                 data.add(new StaffHistoryController.History(text[i], text[i + 1], text[i + 2]));
             }
         }
@@ -146,10 +138,10 @@ public class StaffHistoryController implements Initializable {
     private ObservableList<StaffHistoryController.Pet> getPetData() {
         HistoryTable.getItems().clear();
         ObservableList<StaffHistoryController.Pet> data = FXCollections.observableArrayList();
-        String[] text = DataBase.getPetList("staff").split("\\$");
+        String[] text = DataBase.getPetList("staff").split("○");
         if (!text[0].equals("")) {
-            for (int i = 0; i < text.length; i += 2) {
-                data.add(new StaffHistoryController.Pet(text[i], text[i + 1]));
+            for (int i = 0; i < text.length-1; i += 2) {
+                data.add(new StaffHistoryController.Pet(text[i+1].trim(), text[i].trim()));
             }
         }
         return data;

@@ -26,22 +26,8 @@ public class LogController extends App {
 
     //OPENS REGISTER PAGE
     public void openRegister(ActionEvent event) throws Exception {
-        // Create a container (empty StackPane for now)
-        StackPane root = new StackPane();
-
-        // Create a Scene
-        Scene scene = new Scene(root, 800, 600);
-
-        // Get the current stage
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-
-        // Close the current stage
-        stage.close();
-
-        // Open the registration page
         openRegister();
     }
-
 
 
     //VALIDATING USER INFO & TYPE AND SETTING PROPER STAGE
@@ -53,25 +39,17 @@ public class LogController extends App {
                 switch( DataBase.checkAcc(idField.getText(), passField.getText(),event) ){
                     case "patient":{
                         activeID = idF;
-                        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-                        stage.close();
                         openPatientAppointment();
                         break;
                     }
                     case "staff":{
                         activeID = idF;
-                        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-                        stage.close();
                         openStaffAppointment();
                         break;
                     }
                     case "admin":{
                         activeID = idF;
-                        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-                        stage.close();
-                        System.out.println("CAGIRDII");
                         openAdminStaff();
-                        System.out.println("OLDUU");
                         break;
                     }
                     default:{

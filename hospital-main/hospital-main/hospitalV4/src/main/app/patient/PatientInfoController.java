@@ -63,15 +63,14 @@ public class PatientInfoController implements Initializable {
 
     public void openPatientAppointment(ActionEvent event) throws Exception {
         App.openPatientAppointment();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
 
     }
 
     public void openPatientHistory(ActionEvent event) throws Exception {
         App.openPatientHistory();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
+    }
+    public void logOut(ActionEvent event) throws Exception {
+        App.openLogin();
 
     }
 
@@ -82,12 +81,7 @@ public class PatientInfoController implements Initializable {
         petTable.setItems(getPetData());
     }
 
-    public void logOut(ActionEvent event) throws Exception {
-        App.openLogin();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
 
-    }
 
     private void handleMenuItemClick(String animal) {
         petMenu.setText(animal);

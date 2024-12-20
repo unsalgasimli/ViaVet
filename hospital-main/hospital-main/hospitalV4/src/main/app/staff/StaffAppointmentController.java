@@ -103,19 +103,11 @@ public class StaffAppointmentController implements Initializable {
     }
 
     public void openStaffHistory(ActionEvent event) throws Exception{
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
         App.openStaffHistory();
     }
+
     public void logOut(ActionEvent event) throws Exception {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
         App.openLogin();
-    }
-    public void openStaffInfo(ActionEvent event) throws Exception{
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
-        App.openStaffInfo();
     }
 
     public void cancelSelection(){
@@ -143,9 +135,9 @@ public class StaffAppointmentController implements Initializable {
     private ObservableList<StaffAppointmentController.Pets> getPetData() {
         appointmentTable.getItems().clear();
         ObservableList<StaffAppointmentController.Pets> data = FXCollections.observableArrayList();
-        String[] text = DataBase.getPetList("staff").split(" ");
+        String[] text = DataBase.getPetList("staff").split("○");
         for (int i = 0; i < text.length-1; i += 2) {
-            data.add(new StaffAppointmentController.Pets(text[i], text[i + 1]));
+            data.add(new StaffAppointmentController.Pets(text[i+1].trim(), text[i].trim()));
         }
         return data;
     }
@@ -153,28 +145,29 @@ public class StaffAppointmentController implements Initializable {
     private ObservableList<StaffAppointmentController.Appointment> getAppointmentData() {
         appointmentTable.getItems().clear();
         ObservableList<StaffAppointmentController.Appointment> data = FXCollections.observableArrayList();
-        String[] text = DataBase.getAppointmentList(LogController.activeID, true).split("\n");
-        for (int i = 0; i < text.length; i += 5) {
-            data.add(new StaffAppointmentController.Appointment(text[i], text[i + 4], text[i + 1], text[i + 2],text[i+3]));
-        }
+        String[] text = DataBase.getAppointmentList(LogController.activeID, "staff").split("\n");
+      if(text[0] != ""){
+        for (int i = 0; i < text.length-1; i += 5) {
+            data.add(new StaffAppointmentController.Appointment(text[i], text[i + 1], text[i + 2], text[i + 3],text[i+4]));
+        } }
         return data;
     }
 
     //SHOWS DETAILS OF APPOINTMENT AND INTRODUCES OPTIONS TO CHANGE STATUS
     public void showAppointmentInfo(TableView<StaffAppointmentController.Appointment> tableView, ActionEvent event) {
         StaffAppointmentController.Appointment selectedAppointment = tableView.getSelectionModel().getSelectedItem();
-        if (selectedAppointment != null && selectedAppointment.getStatus().equals("Pending")) {
-            String fullName = selectedAppointment.getName();
+        if (selectedAppointment != null && selectedAppointment.getStatus().equals("Pending") || selectedAppointment.getStatus().equals("Scheduled") ) {
+            String full_name = selectedAppointment.getName();
             String date = selectedAppointment.getDate();
             String time = selectedAppointment.getTime();
-            Dialog<ButtonType> confirmationDialog =concreteClass.CustomConfirmationDialog((DataBase.showAppointmentInfo(fullName, date, time)),event);
+            Dialog<ButtonType> confirmationDialog =concreteClass.CustomConfirmationDialog((DataBase.showAppointmentInfo(full_name, date, time)),event);
             ButtonType result = confirmationDialog.showAndWait().orElse(ButtonType.CANCEL);
-           concreteClass.CustomConfirmationDialog(DataBase.showAppointmentInfo(fullName, date, time), event);
+           concreteClass.CustomConfirmationDialog(DataBase.showAppointmentInfo(full_name, date, time), event);
             if (result.getText().equals("Accept")) {
-                DataBase.setAppointmentStatus(fullName, date, time, "Accepted");
+                DataBase.setAppointmentStatus(full_name, date, time, "Accepted");
                 appointmentTable.setItems(getAppointmentData());
             } else if (result.getText().equals("Dismiss")) {
-                DataBase.setAppointmentStatus(fullName, date, time, "Dismissed");
+                DataBase.setAppointmentStatus(full_name, date, time, "Dismissed");
                 appointmentTable.setItems(getAppointmentData());
             }
 
@@ -205,15 +198,14 @@ public class StaffAppointmentController implements Initializable {
     public void addAppointment(TableView<StaffAppointmentController.Pets> tableView,ActionEvent event) {
         StaffAppointmentController.Pets selectedPet = tableView.getSelectionModel().getSelectedItem();
         if (selectedPet != null && datePicker.getValue()!=null && timeMenu.getText()!="Time" ) {
-            String[] ownerName = selectedPet.getName().split(" ");
-            String ownerID=DataBase.getPatientID(ownerName[0],ownerName[1],ownerName[2]);
+            String ownerID=DataBase.getPatientID(selectedPet.getName().trim()).trim();
             String staffID= LogController.activeID;
-            LocalDate date=datePicker.getValue();
+            String date=datePicker.getValue().toString();
             String time=timeMenu.getText();
             String info=infoField.getText();
             String petName=selectedPet.getPname();
 
-            DataBase.addAppointment(ownerID,staffID, date, time,info, "Proposed",petName);
+            DataBase.addAppointment(ownerID,staffID, date, time,info, petName);
             refresh();
 
         } else {
@@ -227,10 +219,11 @@ public class StaffAppointmentController implements Initializable {
         if (selectedAppointment != null) {
 
             String id = LogController.activeID;
-            String petN = selectedAppointment.getPname();
-            int pet = Integer.parseInt(DataBase.getPetId(petN).trim());
+            String petN = selectedAppointment.getPname().trim();
+            int pet = Integer.parseInt(DataBase.getPetId(petN,DataBase.getPatientID(selectedAppointment.getName()).trim().trim()).trim());
             String date=selectedAppointment.getDate();
-            DataBase.deleteAppointment(id,pet,date);
+            String time= selectedAppointment.getTime();
+            DataBase.deleteAppointment(id,pet,date,time);
             appointmentTable.setItems(getAppointmentData());
 
         } else {

@@ -55,23 +55,14 @@ public class PatientAppointmentController implements Initializable {
 
     public void logOut(ActionEvent event) {
         App.openLogin();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
-
     }
 
     public void openPatientInfo(ActionEvent event) {
         App.openPatientInfo();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
-
     }
 
     public void openPatientHistory(ActionEvent event) {
         App.openPatientHistory();
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
-
     }
 
 
@@ -193,10 +184,10 @@ public class PatientAppointmentController implements Initializable {
     private ObservableList<PatientAppointmentController.Appointment> getAppointmentData() {
         AppointmentTable.getItems().clear();
         ObservableList<PatientAppointmentController.Appointment> data = FXCollections.observableArrayList();
-        String[] text = DataBase.getAppointmentList(LogController.activeID, false).split("\n");
+        String[] text = DataBase.getAppointmentList(LogController.activeID, "patient").split("\n");
         if (!text[0].equals("")) {
             for (int i = 0; i < text.length-1; i += 5) {
-               System.out.println(text[i]);
+
                data.add(new PatientAppointmentController.Appointment(text[i], text[i + 1], text[i + 2], text[i + 3], text[i + 4]));
             }
         }
@@ -289,7 +280,8 @@ public class PatientAppointmentController implements Initializable {
 
             int pet = Integer.parseInt(DataBase.getPetId(selectedAppointment.getPet()).trim());
             String date = selectedAppointment.getDate();
-            DataBase.deleteAppointment(id, pet, date);
+            String time = selectedAppointment.getTime();
+            DataBase.deleteAppointment(id, pet, date,time);
             AppointmentTable.setItems(getAppointmentData());
 
         } else {
