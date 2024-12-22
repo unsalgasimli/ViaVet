@@ -16,7 +16,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+
 
 public class PatientInfoController implements Initializable {
     @FXML
@@ -40,26 +44,22 @@ public class PatientInfoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Set up TableView columns
         tableColumnOne.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tableColumnTwo.setCellValueFactory(cellData -> cellData.getValue().birthProperty());
         tableColumnThree.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
 
+        // Populate TableView with pet data
         petTable.setItems(getPetData());
-        deleteBtn.setOnAction(event -> deletePet(petTable,event));
 
-        MenuItem dogMenuItem = new MenuItem("Dog");
-        dogMenuItem.setOnAction(e -> handleMenuItemClick("dog"));
-        petMenu.getItems().add(dogMenuItem);
+        // Set up delete button action
+        deleteBtn.setOnAction(event -> deletePet(petTable, event));
 
-        MenuItem catMenuItem = new MenuItem("Cat");
-        catMenuItem.setOnAction(e -> handleMenuItemClick("cat"));
-        petMenu.getItems().add(catMenuItem);
-
-        MenuItem birdMenuItem = new MenuItem("Bird");
-        birdMenuItem.setOnAction(e -> handleMenuItemClick("bird"));
-        petMenu.getItems().add(birdMenuItem);
+        // Populate petMenu with pet types
+        DataBase.populatePetMenuButton(petMenu);
 
     }
+
 
     public void openPatientAppointment(ActionEvent event) throws Exception {
         App.openPatientAppointment();
@@ -81,11 +81,6 @@ public class PatientInfoController implements Initializable {
         petTable.setItems(getPetData());
     }
 
-
-
-    private void handleMenuItemClick(String animal) {
-        petMenu.setText(animal);
-    }
 
     private ObservableList<PatientInfoController.Pet> getPetData() {
         petTable.getItems().clear();
@@ -120,12 +115,9 @@ public class PatientInfoController implements Initializable {
         return data;
     }
 
-
-
-
     public void addPet() {
         if (!(nameField.getText().isEmpty() || datePicker.getValue() == null || petMenu.getText().equals("Pet"))) {
-            DataBase.addPet(nameField.getText(), datePicker.getValue(), petMenu.getText());
+            DataBase.addPet(nameField.getText(), datePicker.getValue(),DataBase.getPetIdByType(petMenu.getText().trim()));
             refresh();
         }
     }

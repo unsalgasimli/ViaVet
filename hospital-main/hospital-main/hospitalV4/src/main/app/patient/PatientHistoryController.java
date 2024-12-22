@@ -86,9 +86,9 @@ public class PatientHistoryController implements Initializable {
     }
 
     public void addHist() throws SQLException {
-        String petId = DataBase.getPetId(petMenu.getText().trim());
-        petId = petId.trim();
-        int pet = Integer.parseInt(petId);
+
+
+        int pet = DataBase.getPetId(petMenu.getText(),LogController.activeID);
 
         DataBase.addHistory(LogController.activeID, pet, "owner", infoField.getText(), datePicker.getValue());
         refreshPatientHistory();
@@ -103,21 +103,21 @@ public class PatientHistoryController implements Initializable {
     }
 
     private ObservableList<PatientHistoryController.History> getHistoryData() {
-        String docName;
+        String name;
         String petName;
         HistoryTable.getItems().clear();
         ObservableList<PatientHistoryController.History> data = FXCollections.observableArrayList();
-        String[] text = DataBase.getHistoryList(LogController.activeID).split("\\|");
+        String[] text = DataBase.getHistoryList(LogController.activeID).split("○");
         if (!text[0].equals("")) {
             for (int i = 0; i < text.length - 1; i += 4) {
 
                 petName = DataBase.getPetName(text[i].trim());
                 if (text[i + 1].equals("owner")) {
-                    docName = "owner";
+                    name = DataBase.getPatientNS(LogController.activeID);
                 } else {
-                    docName = DataBase.getStaffNS(text[i + 1]);
+                    name = DataBase.getStaffNS(text[i + 1]);
                 }
-                data.add(new PatientHistoryController.History(docName, petName, text[i + 3], text[i + 2]));
+                data.add(new PatientHistoryController.History(name, petName, text[i + 3], text[i + 2]));
 
             }
         }
@@ -131,7 +131,7 @@ public class PatientHistoryController implements Initializable {
             String name = selectedHistory.getDoctor().trim();
             String pet = selectedHistory.getPet().trim();
             String info = selectedHistory.getInfo().trim();
-            DataBase.deleteHistory(name, pet, info, "patient");
+            DataBase.deleteHistory(name, pet, info);
             HistoryTable.setItems(getHistoryData());
 
         } else {

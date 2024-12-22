@@ -164,10 +164,10 @@ public class StaffAppointmentController implements Initializable {
             ButtonType result = confirmationDialog.showAndWait().orElse(ButtonType.CANCEL);
            concreteClass.CustomConfirmationDialog(DataBase.showAppointmentInfo(full_name, date, time), event);
             if (result.getText().equals("Accept")) {
-                DataBase.setAppointmentStatus(full_name, date, time, "Accepted");
+                DataBase.setAppointmentStatus(date, time, 5);
                 appointmentTable.setItems(getAppointmentData());
             } else if (result.getText().equals("Dismiss")) {
-                DataBase.setAppointmentStatus(full_name, date, time, "Dismissed");
+                DataBase.setAppointmentStatus(date, time, 3);
                 appointmentTable.setItems(getAppointmentData());
             }
 
@@ -220,7 +220,7 @@ public class StaffAppointmentController implements Initializable {
 
             String id = LogController.activeID;
             String petN = selectedAppointment.getPname().trim();
-            int pet = Integer.parseInt(DataBase.getPetId(petN,DataBase.getPatientID(selectedAppointment.getName()).trim().trim()).trim());
+            int pet = DataBase.getPetId(petN,DataBase.getPatientID(selectedAppointment.getName()).trim());
             String date=selectedAppointment.getDate();
             String time= selectedAppointment.getTime();
             DataBase.deleteAppointment(id,pet,date,time);

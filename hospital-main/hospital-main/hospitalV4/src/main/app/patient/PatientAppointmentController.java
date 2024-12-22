@@ -94,8 +94,8 @@ public class PatientAppointmentController implements Initializable {
         acceptBtn.setVisible(false);
         dismissBtn.setVisible(false);
         datePicker.setOnAction(event -> changeTimeStatus());
-        acceptBtn.setOnAction(event -> setAppStatus(AppointmentTable, "Accepted", event));
-        dismissBtn.setOnAction(event -> setAppStatus(AppointmentTable, "Dismissed", event));
+        acceptBtn.setOnAction(event -> setAppStatus(AppointmentTable, 5, event));
+        dismissBtn.setOnAction(event -> setAppStatus(AppointmentTable, 3, event));
         AppointmentTable.setOnMouseClicked(event -> check(AppointmentTable));
 
          deleteAppointment.setOnAction(event -> deleteAppointment(AppointmentTable,event));
@@ -197,17 +197,18 @@ public class PatientAppointmentController implements Initializable {
     public void requestAppointment(ActionEvent actionEvent) {
 
            String staffId = DataBase.getStaffId(vetMenu.getText());
-           int petId = Integer.parseInt(DataBase.getPetId(petMenu.getText()).trim());
+           int petId = DataBase.getPetId(petMenu.getText().trim(),(LogController.activeID));
+
            DataBase.createAppointment(staffId.trim(),petId,datePicker.getValue().toString(),timeMenu.getText(),descriptionField.getText());
             refresh();
     }
 
 
 
-    private void setAppStatus(TableView<Appointment> appointmentTable, String status, ActionEvent event) {
+    private void setAppStatus(TableView<Appointment> appointmentTable, int status_id, ActionEvent event) {
         PatientAppointmentController.Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
         if (selectedAppointment != null && selectedAppointment.getStatus().equals("Proposed")) {
-            DataBase.setAppointmentStatus(selectedAppointment.getDate(), selectedAppointment.getTime(), status,"Proposed");
+            DataBase.setAppointmentStatus(selectedAppointment.getDate(), selectedAppointment.getTime(), status_id);
             refresh();
         }else{
             concreteClass.showAlert("No row selected/Syntax error",event);
@@ -277,11 +278,10 @@ public class PatientAppointmentController implements Initializable {
         if (selectedAppointment != null) {
 
             String id = DataBase.getStaffId(selectedAppointment.getDoctor()).trim();
-
-            int pet = Integer.parseInt(DataBase.getPetId(selectedAppointment.getPet()).trim());
+            int petId = (DataBase.getPetId(selectedAppointment.getPet().trim(),(LogController.activeID)));
             String date = selectedAppointment.getDate();
             String time = selectedAppointment.getTime();
-            DataBase.deleteAppointment(id, pet, date,time);
+            DataBase.deleteAppointment(id, petId, date,time);
             AppointmentTable.setItems(getAppointmentData());
 
         } else {
