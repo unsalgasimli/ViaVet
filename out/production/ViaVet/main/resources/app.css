@@ -1,0 +1,474 @@
+#borderPane{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-border-radius: 25;
+    -fx-border-width: 2px;
+    -fx-border-color:  #1b0729;;
+    -fx-min-width: 45em;
+    -fx-pref-width: 120em;
+    -fx-max-width: 120em;
+    -fx-min-height: 50em;
+    -fx-pref-height: 80em;
+    -fx-max-height: 80em;
+
+}
+#botHbox {
+    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1; /* Top transparent, others pink */
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
+    -fx-background-radius: 0 0 25 25;
+    -fx-border-radius: 0 0 25 25;
+    -fx-min-width: 5em;
+    -fx-pref-width: 120em;
+    -fx-max-width: 120em;
+    -fx-min-height: 40em;
+    -fx-pref-height: 75em;
+    -fx-max-height: 75em;
+    -fx-border-insets: -0.15em; /* Border overlaps the content */
+}
+#infoVbox{
+    -fx-min-width: 15em;
+    -fx-pref-width:60em;
+    -fx-max-width: 60em;
+    -fx-min-height: 20em;
+    -fx-pref-height: 65em;
+    -fx-max-height: 60em;
+    -fx-border-radius: 25;
+}
+
+#rightVbox{
+    -fx-min-width: 15em;
+    -fx-pref-width:40em;
+    -fx-max-width: 40em;
+    -fx-min-height: 20em;
+    -fx-pref-height: 65em;
+    -fx-max-height: 60em;
+    -fx-border-radius: 25;
+}
+#insiderVbox{
+    -fx-min-width: 15em;
+    -fx-pref-width:40em;
+    -fx-max-width: 40em;
+    -fx-min-height: 6em;
+    -fx-pref-height: 15em;
+    -fx-max-height: 15em;
+}
+#staffAppointmentVbox{
+    -fx-min-width: 15em;
+    -fx-pref-width:40em;
+    -fx-max-width: 40em;
+    -fx-min-height: 6em;
+    -fx-pref-height: 60em;
+    -fx-max-height: 60em;
+    -fx-border-radius: 15;
+
+}
+
+
+
+.table-view {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.table-view.table-row-cell {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.table-view.column-header {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10
+}
+
+#table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-view.column-header-background.filler {
+    -fx-background-color: transparent;
+}
+
+.table-view.corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 90, 215, 0.8), 10, 0, 0, 4); /* Glow effect */
+    -fx-background-radius: 10 10 0 0;
+
+
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view.column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+    -fx-alignment: center;
+}
+
+.table-row-cell:hover {
+    -fx-border-color: #353141;
+    -fx-border-radius: 5;
+    -fx-text-background-color: #6216fa;
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:odd:hover {
+    -fx-background-color: #E0E8EA;
+
+}
+
+.table-row-cell:even {
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:even:hover {
+    -fx-background-color: #ABC1C7;
+}
+
+.table-row-cell:focused {
+    -fx-background-color: #ABC1C7;
+    -fx-text-fill: black;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #204552, #1C3A45);
+}
+
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: linear-gradient(to right, #204552, #1C3A45);
+}
+
+#table-view {
+    -fx-min-width: 10em;
+    -fx-pref-width: 70em;
+    -fx-max-width: 70em;
+    -fx-min-height: 30em;
+    -fx-pref-height: 60em;
+    -fx-max-height: 60em;
+}
+
+#tableColumn.column-header {
+
+    -fx-min-height: 2em;
+    -fx-pref-height: 3.5em;
+    -fx-max-height: 3.5em;
+}
+#tableColumn{
+
+    -fx-min-height: 2em;
+    -fx-pref-height: 3em;
+    -fx-max-height: 3em;
+}
+
+
+
+#descField{
+    -fx-min-width: 5em;
+    -fx-pref-width:25em;
+    -fx-max-width: 25em;
+    -fx-min-height: 1em;
+    -fx-pref-height:4em;
+    -fx-max-height: 4em;
+
+
+ /*   -fx-background-color: transparent; */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: white;
+    -fx-font-size: 14px; /* Adjusted font size */
+    -fx-text-alignment: center;
+    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
+
+
+    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
+}
+
+
+#descField:hover{
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-background-radius: 25px;
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+#descField:focused{
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-background-color: rgba(0, 0, 0, 0.1); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-border-width: 3px;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+#datePicker{
+    -fx-min-width: 5em;
+    -fx-pref-width:25em;
+    -fx-max-width: 25em;
+    -fx-min-height: 1em;
+    -fx-pref-height:4em;
+    -fx-max-height: 4em;
+
+    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-border-radius: 5px;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: white;
+    -fx-font-size: 14px; /* Adjusted font size */
+    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
+    -fx-background-color: transparent;
+
+
+
+
+}
+
+#datePicker .text-field {
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
+}
+#datePicker:hover{
+    -fx-border-color: transparent; /* Brighter pink for hover */
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+
+
+}
+#datePicker:hover .text-field {
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px;  /* Fixed border radius */
+
+}
+#datePicker:focused{
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+#datePicker:focused .text-field{
+    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-border-radius: 25px 0 0 25px;
+    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+#menuBtn .label{
+    -fx-text-fill: white;
+}
+#menuBtn .menu{
+    -fx-background-color: transparent;
+}
+#menuBtn .menu-item{
+
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
+}
+#menuBtn .menu-item:focused {
+    -fx-background-color: #30667A; /* Change the background color when focused (for keyboard navigation) */
+}
+
+#menuBtn .menu-item:hover {
+
+    -fx-background-color: #1C3A45; /* Change the background color on hover */
+}
+#menuBtn .context-menu{
+    -fx-background-color: #D44DFF;
+
+}
+
+#menuBtn{
+    -fx-min-width: 5em;
+    -fx-pref-width:10em;
+    -fx-max-width: 10em;
+    -fx-min-height: 1em;
+    -fx-pref-height:4em;
+    -fx-max-height: 4em;
+
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2); /* Glow effect */
+}
+#menuBtn:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;  /* Fixed border radius */
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+}
+#menuBtn:focused{
+    -fx-scale-y: 1  ;
+    -fx-scale-x:1 ;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+#selectionBtn{
+    -fx-min-width: 5em;
+    -fx-pref-width:14em;
+    -fx-max-width: 14em;
+    -fx-min-height: 1em;
+    -fx-pref-height:3em;
+    -fx-max-height: 3em;
+
+
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: #f714ff;
+    -fx-opacity: 0.5;
+
+}
+#selectionBtn:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2); /* Glow effect */
+    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;  /* Fixed border radius */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1.15;
+}
+#selectionBtnDetails{
+    -fx-min-width: 5em;
+    -fx-pref-width:32em;
+    -fx-max-width: 32em;
+    -fx-min-height: 1em;
+    -fx-pref-height:5em;
+    -fx-max-height: 5em;
+    -fx-text-fill: white;
+    -fx-background-color: #31687C   ;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #20404C;
+}
+#selectionBtnDetails:hover{
+    -fx-scale-y: 1.05;
+    -fx-scale-x:1.05 ;
+    -fx-background-color: #1C3A45;
+}
+
+#topHbox {
+    -fx-background-radius: 25 25 0 0;
+    -fx-background-color: transparent;
+    -fx-min-width: 45em;
+    -fx-pref-width: 120em; /* Adjust to your layout needs */
+    -fx-max-width: 120em;
+    -fx-min-height: 3em;
+    -fx-pref-height: 5em;
+    -fx-max-height: 5em;
+    -fx-border-color: #FF4ED7 #FF4ED7 transparent #FF4ED7; /* Top transparent, others pink */
+    -fx-border-insets: -0.15em; /* Border overlaps the content */
+    -fx-border-radius: 25 25 0 0;
+}
+
+/* Hover effect for #botHbox and #topHbox */
+/* Hover effect for #botHbox with transparent top border */
+#borderPane:hover #botHbox {
+
+    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1; /* Top transparent, others pink */
+    -fx-border-width: 3px; /* Uniform border width */
+    -fx-border-radius: 0 0 25 25; /* Rounded bottom corners */
+}
+
+/* Hover effect for #topHbox with transparent bottom border */
+#borderPane:hover #topHbox {
+
+    -fx-border-color: #FF79F1 #FF79F1 transparent #FF79F1; /* Bottom transparent, others pink */
+    -fx-border-width: 3px; /* Uniform border width */
+    -fx-border-radius: 25 25 0 0
+}
+
+
+#PatientTopBtnLeft, #PatientTopBtnCenter, #PatientTopBtnRight {
+    -fx-background-color: rgba(0, 0, 0, 0.7); /* Transparent dark background */
+    -fx-text-fill: white; /* Default text color */
+    -fx-background-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0; /* Corner radii per button */
+    -fx-border-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0; /* Same corner radii */
+    -fx-min-height: 3em;
+    -fx-pref-height: 5em;
+    -fx-max-height: 5em;
+    -fx-min-width: 15em;
+    -fx-pref-width: 121em;
+    -fx-cursor: hand; /* Pointer cursor */
+    -fx-effect: none; /* No glow by default */
+    -fx-transition: all 0.3s ease-in-out; /* Smooth transitions */
+}
+
+/* Hover effect: subtle transparency and gradient */
+#PatientTopBtnLeft:hover, #PatientTopBtnCenter:hover, #PatientTopBtnRight:hover {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 79, 241, 0.4), rgba(255, 78, 215, 0.2)); /* Subtle gradient */
+    -fx-text-fill: rgba(255, 255, 255, 0.85); /* Slightly brighter text */
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 4, 0.2, 0, 1); /* Soft glow */
+}
+
+/* Text scaling on hover for emphasis */
+#PatientTopBtnLeft:hover .text, #PatientTopBtnCenter:hover .text, #PatientTopBtnRight:hover .text {
+    -fx-scale-x: 1.05; /* Gentle text scale */
+    -fx-scale-y: 1.05; /* Gentle text scale */
+}
+
+/* Button-specific styles */
+#PatientTopBtnLeft {
+    -fx-background-radius: 25 0 0 0; /* Top-left rounded */
+    -fx-border-radius: 25 0 0 0; /* Border matching background */
+}
+
+#PatientTopBtnCenter {
+    -fx-background-radius: 0; /* Square button */
+    -fx-border-radius: 0; /* Matching square border */
+}
+
+#PatientTopBtnRight {
+    -fx-background-radius: 0 25 0 0; /* Top-right rounded */
+    -fx-border-radius: 0 25 0 0; /* Border matching background */
+}

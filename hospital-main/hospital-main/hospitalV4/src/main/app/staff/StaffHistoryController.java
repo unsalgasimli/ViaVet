@@ -105,7 +105,7 @@ public class StaffHistoryController implements Initializable {
             String owner = selectedHistory.getDoctor();
             String pet = selectedHistory.getPet();
             String info = selectedHistory.getInfo();
-            DataBase.deleteHistory(owner, pet, info);
+            DataBase.deleteHistoryStaff(owner, pet, info);
             refreshPatientHistory();
         } else {
             concreteClass.showAlert("No row selected",event);
@@ -128,7 +128,7 @@ public class StaffHistoryController implements Initializable {
         String[] text = DataBase.getAllHistoryList().split("○");
         if (!text[0].equals("")) {
             for (int i = 0; i < text.length-1; i += 3) {
-                data.add(new StaffHistoryController.History(text[i], text[i + 1], text[i + 2]));
+                data.add(new StaffHistoryController.History(text[i].trim(), text[i + 1], text[i + 2]));
             }
         }
         return data;

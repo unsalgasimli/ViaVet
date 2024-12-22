@@ -148,7 +148,7 @@ public class StaffAppointmentController implements Initializable {
         String[] text = DataBase.getAppointmentList(LogController.activeID, "staff").split("\n");
       if(text[0] != ""){
         for (int i = 0; i < text.length-1; i += 5) {
-            data.add(new StaffAppointmentController.Appointment(text[i], text[i + 1], text[i + 2], text[i + 3],text[i+4]));
+            data.add(new StaffAppointmentController.Appointment(text[i].trim(), text[i + 1], text[i + 2], text[i + 3],text[i+4]));
         } }
         return data;
     }
@@ -156,7 +156,7 @@ public class StaffAppointmentController implements Initializable {
     //SHOWS DETAILS OF APPOINTMENT AND INTRODUCES OPTIONS TO CHANGE STATUS
     public void showAppointmentInfo(TableView<StaffAppointmentController.Appointment> tableView, ActionEvent event) {
         StaffAppointmentController.Appointment selectedAppointment = tableView.getSelectionModel().getSelectedItem();
-        if (selectedAppointment != null && selectedAppointment.getStatus().equals("Pending") || selectedAppointment.getStatus().equals("Scheduled") ) {
+        if (selectedAppointment != null && selectedAppointment.getStatus().equals("Requested") || selectedAppointment.getStatus().equals("Scheduled") ) {
             String full_name = selectedAppointment.getName();
             String date = selectedAppointment.getDate();
             String time = selectedAppointment.getTime();

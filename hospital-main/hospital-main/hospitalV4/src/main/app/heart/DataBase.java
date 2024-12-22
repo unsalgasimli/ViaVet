@@ -147,7 +147,7 @@ public class DataBase {
             preparedStatement.setDate(4, Date.valueOf(date));
             preparedStatement.setTime(5, Time.valueOf(time + ":00"));
             preparedStatement.setString(6, desc);
-            preparedStatement.setInt(7, 2);
+            preparedStatement.setInt(7, 4);
 
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println("Rows inserted: " + rowsInserted);
@@ -157,7 +157,7 @@ public class DataBase {
     }
 
     public static String checkAcc(String text, String text1, ActionEvent event) {
-        return "patient";
+        return "staff";
     }
 
 
@@ -191,11 +191,11 @@ public class DataBase {
 
                 while (resultSet.next()) {
                     String appointmentDetails =
-                            resultSet.getString("patient_id")
-                                    + "\n" + resultSet.getString("pet_id")
+                           DataBase.getPatientNS(resultSet.getString("patient_id"))
+                                    + "\n" +DataBase.getPetName(resultSet.getString("pet_id"))
                                     + "\n" + resultSet.getString("appointment_date")
                                     + "\n" + resultSet.getString("appointment_time")
-                                    + "\n" + resultSet.getInt("status_id")
+                                    + "\n" +DataBase.getStatusByID(resultSet.getInt("status_id"))
                                     + "\n";
                     result.append(appointmentDetails);
                 }
@@ -577,15 +577,29 @@ public class DataBase {
 
     public static void deleteHistory(String name, String pet, String info) {
 
-
             int pet_id = (DataBase.getPetId( pet, DataBase.getPatientID(name).trim()));
-
-
-
         try (Connection connection = dbManager.getConnection()) {
             String insertQuery = "DELETE FROM history_list WHERE patient_id = ? AND pet_id = ? AND info = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1, activeID);  // Assuming activeID is the patient's ID
+            preparedStatement.setInt(2, pet_id);   // Staff ID
+            preparedStatement.setString(3, info);
+            System.out.println(preparedStatement);// Pet ID
+            int rowsInserted = preparedStatement.executeUpdate();
+            System.out.println("Rows deleted: " + rowsInserted);
+        } catch (Exception e) {
+            System.err.println("Error while deleting history record: " + e.getMessage());
+        }
+    }
+
+    public static void deleteHistoryStaff(String name, String pet, String info) {
+
+        int pet_id = (DataBase.getPetId( pet, DataBase.getPatientID(name).trim()));
+        String  owner_id = DataBase.getPatientID(name).trim();
+        try (Connection connection = dbManager.getConnection()) {
+            String insertQuery = "DELETE FROM history_list WHERE patient_id = ? AND pet_id = ? AND info = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, owner_id);  // Assuming activeID is the patient's ID
             preparedStatement.setInt(2, pet_id);   // Staff ID
             preparedStatement.setString(3, info);
             System.out.println(preparedStatement);// Pet ID
@@ -616,14 +630,16 @@ public class DataBase {
 
     public static String showAppointmentInfo(String fullName, String date, String time) {
         StringBuilder result = new StringBuilder();
+        String patient_id = DataBase.getPatientID(fullName).trim();
 
         try (Connection connection = dbManager.getConnection()) {
 
-            String selectQuery = "SELECT info FROM patient_appointments_view WHERE patient_name = ? AND appointment_date = ? AND appointment_time = ?;";
+            String selectQuery = "SELECT info FROM patient_appointments_view WHERE patient_id = ? AND appointment_date = ? AND appointment_time = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
-            preparedStatement.setString(1, fullName);
+            preparedStatement.setString(1, patient_id);
             preparedStatement.setDate(2, Date.valueOf(date));
             preparedStatement.setTime(3, Time.valueOf(time));
+            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 String info = resultSet.getString(1);// Fetch and clean the "info" column value
@@ -669,7 +685,7 @@ public class DataBase {
 
         int pet_id = (DataBase.getPetId(petName, ownerId));
         try (Connection connection = dbManager.getConnection()) {
-            String insertQuery = "INSERT INTO appointment_list (patient_id, staff_id, pet_id, appointment_date, appointment_time, info, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO appointment_list (patient_id, staff_id, pet_id, appointment_date, appointment_time, info, status_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1, ownerId);
             preparedStatement.setString(2, staffId);
@@ -677,7 +693,7 @@ public class DataBase {
             preparedStatement.setDate(4, Date.valueOf(date));
             preparedStatement.setTime(5, Time.valueOf(time + ":00"));
             preparedStatement.setString(6, desc);
-            preparedStatement.setString(7, "Proposed");
+            preparedStatement.setInt(7, 2);
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println("Rows inserted: " + rowsInserted);
         } catch (Exception e) {
