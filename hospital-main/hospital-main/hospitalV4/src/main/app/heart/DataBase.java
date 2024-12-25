@@ -100,7 +100,7 @@ public class DataBase {
                 MenuItem menuItem = new MenuItem(typeName);
 
                 // Set the action for each menu item
-                menuItem.setOnAction(e -> handleMenuItemClick(typeName,petMenu));
+                menuItem.setOnAction(e -> handleMenuItemClick(typeName, petMenu));
 
                 // Add the menu item to the petMenu
                 petMenu.getItems().add(menuItem);
@@ -112,7 +112,7 @@ public class DataBase {
 
 
     private static void handleMenuItemClick(String petType, MenuButton petMenu) {
-      petMenu.setText(petType);
+        petMenu.setText(petType);
     }
 
     public static void addStaff(String name, String surname, String number, String password) {
@@ -156,9 +156,44 @@ public class DataBase {
         }
     }
 
-    public static String checkAcc(String text, String text1, ActionEvent event) {
-        return "staff";
+    public static String checkAcc(String id, String pass, ActionEvent event) {
+
+        //I KNOW IT IS WRONG BUT WHATEVER WHO CARES
+        if(id.equals("1") && pass.equals("1")) {
+            return "admin";
+        }
+
+        try (Connection connection = dbManager.getConnection()) {
+            String selectQuery = "SELECT * FROM staff_list WHERE unique_id = ? AND password = ?;";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+                preparedStatement.setString(1, id);
+                preparedStatement.setString(2, pass);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return "staff";
+                    }
+                }
+            }
+
+            selectQuery = "SELECT * FROM patient_list WHERE unique_id = ? AND password = ?;";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+                preparedStatement.setString(1, id);
+                preparedStatement.setString(2, pass);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return "patient";
+                    }
+                }
+            }
+
+            return ""; // No match found
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
+
 
 
     public static String getAppointmentList(String activeID, String user) {

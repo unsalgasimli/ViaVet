@@ -53,14 +53,10 @@ public class AdminPatientController implements Initializable {
 
     // Opens the staff management tab for admin
     public void openStaffManagment(ActionEvent event) {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
         App.openAdminStaff();
     }
 
     public void logOut(ActionEvent event) {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
         App.openLogin();
     }
 

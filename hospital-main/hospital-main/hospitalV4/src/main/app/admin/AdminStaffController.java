@@ -35,6 +35,8 @@ public class AdminStaffController implements Initializable {
     @FXML
     Button idBtn;
     @FXML
+    Button updateBtn;
+    @FXML
     Button staffBtn;
     @FXML
     private TableView<Staff> staffTable;
@@ -61,6 +63,7 @@ public class AdminStaffController implements Initializable {
         staffTable.setItems(getStaffData());
         delBtn.setOnAction(event -> deleteStaff(staffTable, event));
         idBtn.setOnAction(event -> showDetails(staffTable, event));
+        updateBtn.setOnAction(this::updateStaff);
 
         staffTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -76,14 +79,10 @@ public class AdminStaffController implements Initializable {
 
     //AS STATED OPENS PATIENT PAGE FOR ADMIN
     public void openPatient(ActionEvent event) {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
         App.openAdminPatient();
     }
 
     public void logOut(ActionEvent event) {
-        Stage stage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
-        stage.close();
         App.openLogin();
     }
 
@@ -139,7 +138,7 @@ public class AdminStaffController implements Initializable {
         return text.matches("\\d*"); // This regex checks if the string contains only digits
     }
 
-    public void updatePatient(ActionEvent event) {
+    public void updateStaff(ActionEvent event) {
         if (selectedStaff != null) {
             if (!(nameField.getText().isEmpty() || surnameField.getText().isEmpty() || numberField.getText().isEmpty())) {
                 if (containsOnlyNumbers(numberField)) {
