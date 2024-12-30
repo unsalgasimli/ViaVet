@@ -82,6 +82,11 @@
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </Button>
+                              <Button id="AnyBtn" fx:id="updateBtn" mnemonicParsing="false" text="Update">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                            <HBox.margin>
                               <Insets right="10.0" />
