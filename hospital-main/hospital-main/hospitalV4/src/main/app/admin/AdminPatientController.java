@@ -34,7 +34,7 @@ public class AdminPatientController implements Initializable {
     @FXML
     Button idBtn;
     @FXML
-    Button updateBtn; // Button to trigger the update operation
+    Button updateBtn;
     @FXML
     private TableView<AdminPatientController.Patient> patientTable;
     @FXML
@@ -49,9 +49,9 @@ public class AdminPatientController implements Initializable {
     private TableColumn<AdminPatientController.Patient, String> tableNumber;
 
     ConcreteClass concreteClass = new ConcreteClass();
-    private Patient selectedPatient; // Holds the currently selected patient
+    private Patient selectedPatient;
 
-    // Opens the staff management tab for admin
+
     public void openStaffManagment(ActionEvent event) {
         App.openAdminStaff();
     }
@@ -60,7 +60,7 @@ public class AdminPatientController implements Initializable {
         App.openLogin();
     }
 
-    // Adds a new patient as an admin
+
     public void addPatient(ActionEvent event) {
         if (!(nameField.getText().isEmpty() || surnameField.getText().isEmpty() || middlenameField.getText().isEmpty() || datePicker.getValue() == null || numberField.getText().isEmpty() || passwordField.getText().isEmpty())) {
             if (containsOnlyNumbers(numberField)) {
@@ -76,10 +76,10 @@ public class AdminPatientController implements Initializable {
 
     public static boolean containsOnlyNumbers(TextField textField) {
         String text = textField.getText();
-        return text.matches("\\d*"); // This regex checks if the string contains only digits
+        return text.matches("\\d*");
     }
 
-    // Resets the input fields and refreshes the table
+
     private void refreshPatient() {
         nameField.clear();
         surnameField.clear();
@@ -108,7 +108,6 @@ public class AdminPatientController implements Initializable {
     private ObservableList<AdminPatientController.Patient> getPatientData() {
         patientTable.getItems().clear();
         ObservableList<AdminPatientController.Patient> data = FXCollections.observableArrayList();
-        // Call to database
         String[] text = DataBase.getPatientList().split(" ");
         if (!text[0].equals("")) {
             for (int i = 0; i < text.length - 1; i += 5) {

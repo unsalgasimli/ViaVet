@@ -14,6 +14,8 @@ import main.app.heart.DataBase;
 import main.app.logreg.LogController;
 
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PatientAppointmentController implements Initializable {
@@ -102,14 +104,14 @@ public class PatientAppointmentController implements Initializable {
          appointmentDetailBtn.setOnAction(event -> showDetails(AppointmentTable, event));
 
         String petListData = DataBase.getPetList("patient");
-        String[] text = petListData.split(" ");  // Split by newline to separate each pet
+        String[] text = petListData.split(" ");
 
 
 
         for (int i = 0; i < text.length-1; i+=3) {
             try {
 
-                String name = text[i].trim();  // Remove leading/trailing spaces
+                String name = text[i].trim();
                 try {
                     MenuItem menuItem = new MenuItem(name);
                     menuItem.setOnAction(e -> handleMenuItemClickForPet(name));
@@ -129,27 +131,26 @@ public class PatientAppointmentController implements Initializable {
 
 
         String getVetData =  DataBase.getVetList();
-        text = getVetData.split("\n");  // Split by newline to separate each pet
+        text = getVetData.split("\n");
 
         for (String vetDetails : text) {
-            // Skip empty lines
             if (vetDetails.trim().isEmpty()) continue;
 
             try {
-                String[] vetInfo = vetDetails.split("\n");  // Split by pipe ("|")
+                String[] vetInfo = vetDetails.split("\n");
 
-                String name = vetInfo[0].trim();  // Remove leading/trailing spaces
-                try {
-                    MenuItem menuItem = new MenuItem(name);
-                    menuItem.setOnAction(e -> handleMenuItemClickForVet(name));
-                    vetMenu.getItems().add(menuItem);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                String name = vetInfo[0].trim();
+                if (!name.equals("System Owner")) {
+                    try {
+                        MenuItem menuItem = new MenuItem(name);
+                        menuItem.setOnAction(e -> handleMenuItemClickForVet(name));
+                        vetMenu.getItems().add(menuItem);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-
-
             } catch (Exception e) {
-                System.err.println("Error processing vet data: " + e);
+                throw new RuntimeException(e);
             }
         }
 
@@ -187,7 +188,6 @@ public class PatientAppointmentController implements Initializable {
         String[] text = DataBase.getAppointmentList(LogController.activeID, "patient").split("\n");
         if (!text[0].equals("")) {
             for (int i = 0; i < text.length-1; i += 5) {
-
                data.add(new PatientAppointmentController.Appointment(text[i], text[i + 1], text[i + 2], text[i + 3], text[i + 4]));
             }
         }
@@ -195,12 +195,20 @@ public class PatientAppointmentController implements Initializable {
     }
 
     public void requestAppointment(ActionEvent actionEvent) {
-
-           String staffId = DataBase.getStaffId(vetMenu.getText());
+        ConcreteClass concreteInstance = new ConcreteClass();
+        if(!(descriptionField.getText().isEmpty() || datePicker.getValue() == null || petMenu.getText().equals("Pets") || vetMenu.getText().equals("Veteranerian") || timeMenu.getText().equals("Time"))) {
+            if(datePicker.getValue().isAfter(LocalDate.now())){
+            String staffId = DataBase.getStaffId(vetMenu.getText());
            int petId = DataBase.getPetId(petMenu.getText().trim(),(LogController.activeID));
 
            DataBase.createAppointment(staffId.trim(),petId,datePicker.getValue().toString(),timeMenu.getText(),descriptionField.getText());
             refresh();
+            }else{
+                concreteInstance.showAlert("Date can be selected only after today.",actionEvent);
+            }
+        }else{
+            concreteInstance.showAlert("Fields must be filled.",actionEvent);
+        }
     }
 
 
@@ -275,7 +283,7 @@ public class PatientAppointmentController implements Initializable {
 
     public void deleteAppointment(TableView<PatientAppointmentController.Appointment> tableView,ActionEvent event) {
         PatientAppointmentController.Appointment selectedAppointment = tableView.getSelectionModel().getSelectedItem();
-        if (selectedAppointment != null) {
+        if (selectedAppointment != null && selectedAppointment.getStatus().equals("Requested")) {
 
             String id = DataBase.getStaffId(selectedAppointment.getDoctor()).trim();
             int petId = (DataBase.getPetId(selectedAppointment.getPet().trim(),(LogController.activeID)));
@@ -285,7 +293,7 @@ public class PatientAppointmentController implements Initializable {
             AppointmentTable.setItems(getAppointmentData());
 
         } else {
-            concreteClass.showAlert( "TextFields not filled",event);
+            concreteClass.showAlert( "TextFields not filled/CONTEXT ERROR",event);
         }
         refresh();
     }

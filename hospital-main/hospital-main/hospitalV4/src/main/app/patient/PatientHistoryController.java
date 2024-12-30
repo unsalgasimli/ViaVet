@@ -16,6 +16,7 @@ import main.app.logreg.LogController;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PatientHistoryController implements Initializable {
@@ -85,13 +86,20 @@ public class PatientHistoryController implements Initializable {
         petMenu.setText(animal);
     }
 
-    public void addHist() throws SQLException {
 
 
-        int pet = DataBase.getPetId(petMenu.getText(),LogController.activeID);
-
-        DataBase.addHistory(LogController.activeID, pet, "owner", infoField.getText(), datePicker.getValue());
-        refreshPatientHistory();
+    public void addHist(ActionEvent actionEvent) throws SQLException {
+        ConcreteClass concreteInstance = new ConcreteClass();
+        if(!(infoField.getText().isEmpty() || datePicker.getValue() == null || petMenu.getText().equals("Pet"))) {
+            if(datePicker.getValue().isBefore(LocalDate.now())) {
+                int pet = DataBase.getPetId(petMenu.getText(), LogController.activeID);
+                DataBase.addHistory(LogController.activeID, pet, "owner", infoField.getText(), datePicker.getValue());
+                refreshPatientHistory();
+            }else{
+                concreteInstance.showAlert("Date can be selected only before today.",actionEvent);
+            } }else{
+            concreteInstance.showAlert("Fields must be filled.",actionEvent);
+            }
     }
 
     private void refreshPatientHistory() {

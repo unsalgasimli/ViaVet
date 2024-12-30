@@ -75,7 +75,7 @@
                                           <Insets left="50.0" right="60.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button id="selectionBtn" fx:id="delBtn" mnemonicParsing="false" text="delete">
+                                    <Button id="selectionBtn" fx:id="delBtn" mnemonicParsing="false" text="Delete">
                                        <HBox.margin>
                                           <Insets right="50.0" />
                                        </HBox.margin></Button>

@@ -67,14 +67,12 @@ public class DataBase {
     }
 
     public static Integer getPetIdByType(String typeName) {
-        System.out.println(typeName);
         String query = "SELECT p.id FROM pet_types p " +
                 "WHERE p.type_name = ? LIMIT 1";
         Integer petId = null;
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, typeName);
-            System.out.println(preparedStatement);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     petId = resultSet.getInt("id");
@@ -248,7 +246,6 @@ public class DataBase {
         try (Connection connection = dbManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, statusId);
-            System.out.println(preparedStatement);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     status = resultSet.getString("status_name");
@@ -390,7 +387,6 @@ public class DataBase {
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
             preparedStatement.setString(1, ide);
             preparedStatement.setString(2, owner);
-            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 id = resultSet.getInt("id");
@@ -411,7 +407,6 @@ public class DataBase {
             preparedStatement.setInt(2, pet);
             preparedStatement.setDate(3, Date.valueOf(date));
             preparedStatement.setTime(4, Time.valueOf(time));
-            System.out.println(preparedStatement);
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println("Rows deleted: " + rowsInserted);
         } catch (Exception e) {
@@ -427,6 +422,23 @@ public class DataBase {
             preparedStatement.setInt(1, status_id);  // Assuming activeID is the patient's ID
             preparedStatement.setDate(2, Date.valueOf(date));
             preparedStatement.setTime(3, Time.valueOf(time));
+            int rowsUpdated = preparedStatement.executeUpdate();
+            System.out.println("Rows updated: " + rowsUpdated);
+        } catch (Exception e) {
+            System.err.println("Error while updating appointment record: " + e.getMessage());
+        }
+    }
+
+    public static void setAppointmentStatusStaff(String date,String newDate, String time,String newTime, int status_id) {
+
+        try (Connection connection = dbManager.getConnection()) {
+            String updateQuery = "UPDATE appointment_list SET appointment_date = ?,appointment_time = ? , status_id = ?  WHERE  appointment_date = ? AND appointment_time = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+            preparedStatement.setDate(1, Date.valueOf(newDate));
+            preparedStatement.setTime(2, Time.valueOf(newTime));
+            preparedStatement.setInt(3, status_id);  // Assuming activeID is the patient's ID
+            preparedStatement.setDate(4, Date.valueOf(date));
+            preparedStatement.setTime(5, Time.valueOf(time));
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println("Rows updated: " + rowsUpdated);
         } catch (Exception e) {
@@ -504,7 +516,6 @@ public class DataBase {
     public static void addHistoryStaff(String patName, String petName, String text, LocalDate value) {
 
         String patientID = DataBase.getPatientID(patName);
-        System.out.println(patientID);
         int petId = DataBase.getPetId(petName.trim(), patientID.trim());
         try (Connection connection = dbManager.getConnection()) {
             String insertQuery = "INSERT INTO history_list (patient_id, pet_id, staff_id,info,created_at) VALUES (?, ?, ?, ?, ?)";
@@ -543,7 +554,6 @@ public class DataBase {
             System.err.println("Error while retrieving pet(name) record: " + e.getMessage());
             return "Error: " + e.getMessage();
         }
-        System.out.println(result);
         return result.toString();
     }
 
@@ -619,7 +629,6 @@ public class DataBase {
             preparedStatement.setString(1, activeID);  // Assuming activeID is the patient's ID
             preparedStatement.setInt(2, pet_id);   // Staff ID
             preparedStatement.setString(3, info);
-            System.out.println(preparedStatement);// Pet ID
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println("Rows deleted: " + rowsInserted);
         } catch (Exception e) {
@@ -637,30 +646,12 @@ public class DataBase {
             preparedStatement.setString(1, owner_id);  // Assuming activeID is the patient's ID
             preparedStatement.setInt(2, pet_id);   // Staff ID
             preparedStatement.setString(3, info);
-            System.out.println(preparedStatement);// Pet ID
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println("Rows deleted: " + rowsInserted);
         } catch (Exception e) {
             System.err.println("Error while deleting history record: " + e.getMessage());
         }
     }
-
-//    public static void deleteHistory(String name, String pet, String info) {
-//        String id = DataBase.getPatientID(name.trim()).trim();
-//        int pet_id = Integer.parseInt((DataBase.getPetId(pet, id)).trim());
-//
-//        try (Connection connection = dbManager.getConnection()) {
-//            String insertQuery = "DELETE FROM history_list WHERE patient_id = ? AND pet_id = ? AND info = ?;";
-//            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
-//            preparedStatement.setString(1, id);
-//            preparedStatement.setInt(2, pet_id);
-//            preparedStatement.setString(3, info);
-//            int rowsInserted = preparedStatement.executeUpdate();
-//            System.out.println("Rows deleted: " + rowsInserted);
-//        } catch (Exception e) {
-//            System.err.println("Error while deleting history record: " + e.getMessage());
-//        }
-//    }
 
 
     public static String showAppointmentInfo(String fullName, String date, String time) {
@@ -674,7 +665,6 @@ public class DataBase {
             preparedStatement.setString(1, patient_id);
             preparedStatement.setDate(2, Date.valueOf(date));
             preparedStatement.setTime(3, Time.valueOf(time));
-            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 String info = resultSet.getString(1);// Fetch and clean the "info" column value
@@ -830,6 +820,7 @@ public class DataBase {
             preparedStatement.setString(2, surname);
             preparedStatement.setString(3, middlename);
             preparedStatement.setDate(4, Date.valueOf(bday));
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             System.err.println("Error while deleting patient record: " + e.getMessage());
         }

@@ -57,7 +57,7 @@
                      <children>
                         <TableView id="table-view" fx:id="AppointmentTable" layoutX="100.0" prefHeight="878.0" prefWidth="903.0" scaleShape="false">
                            <columns>
-                              <TableColumn id="tableColumn" fx:id="tableColumnOne" maxWidth="294.4000747203827" minWidth="-1.0" prefWidth="294.4000747203827" text="Doctor" />
+                              <TableColumn id="tableColumn" fx:id="tableColumnOne" maxWidth="294.4000747203827" minWidth="-1.0" prefWidth="294.4000747203827" text="By" />
                               <TableColumn id="tableColumn" fx:id="tableColumnTwo" prefWidth="139.19995123147964" text="Pet" />
                               <TableColumn id="tableColumn" fx:id="tableColumnThree" prefWidth="120.79995727539062" text="Date" />
                               <TableColumn id="tableColumn" fx:id="tableColumnFour" maxWidth="387.1999206542969" minWidth="-1.0" prefWidth="128.0" text="Time" />

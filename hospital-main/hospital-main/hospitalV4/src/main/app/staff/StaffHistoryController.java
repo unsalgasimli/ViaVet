@@ -89,9 +89,14 @@ public class StaffHistoryController implements Initializable {
 
         StaffHistoryController.Pet selectedPet = petTable.getSelectionModel().getSelectedItem();
         if (selectedPet != null && datePicker.getValue() != null && !infoField.getText().isEmpty()) {
-            String owner = selectedPet.getOwner();
-            String petName = selectedPet.getpetName();
-            DataBase.addHistoryStaff(owner.trim(), petName.trim(),infoField.getText().trim(), datePicker.getValue());
+            if(datePicker.getValue().isBefore(LocalDate.now())) {
+                String owner = selectedPet.getOwner();
+                String petName = selectedPet.getpetName();
+                DataBase.addHistoryStaff(owner.trim(), petName.trim(), infoField.getText().trim(), datePicker.getValue());
+            }
+            else{
+                concreteClass.showAlert("Date can be selected only before today.",event);
+            }
         } else {
             concreteClass.showAlert("No row selected",event);
         }
@@ -114,9 +119,8 @@ public class StaffHistoryController implements Initializable {
     }
 
     private void refreshPatientHistory() {
-        LocalDate currentDate = LocalDate.now();
         infoField.clear();
-        datePicker.setValue(currentDate);
+        datePicker.setValue(null);
         HistoryTable.setItems(getHistoryData());
 
 

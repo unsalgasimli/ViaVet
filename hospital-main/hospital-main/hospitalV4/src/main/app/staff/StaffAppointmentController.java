@@ -179,15 +179,9 @@ public class StaffAppointmentController implements Initializable {
 
     public void proposeAppointment(TableView<StaffAppointmentController.Appointment> tableView,ActionEvent event) {
         StaffAppointmentController.Appointment selectedAppointment = tableView.getSelectionModel().getSelectedItem();
-        if(selectedAppointment != null && selectedAppointment.getStatus().equals("Pending")  ){
-        if ( datePicker.getValue()!=null && timeMenu.getText()!="Time" ) {
-            String fullName = selectedAppointment.getName();
-            String date = selectedAppointment.getDate();
-            String time = selectedAppointment.getTime();
-            String newDate = String.valueOf(datePicker.getValue());
-            String newTime = timeMenu.getText();
-            DataBase.proposeAppointment(fullName, date, time, "Proposed", newDate, newTime);
-            refresh();
+        if(selectedAppointment != null && selectedAppointment.getStatus().equals("Requested")  ){
+        if ( datePicker.getValue()!=null && !timeMenu.getText().equals("Time") ) {
+            DataBase.setAppointmentStatusStaff(selectedAppointment.getDate().trim(), String.valueOf(datePicker.getValue()),selectedAppointment.getTime(),timeMenu.getText(),1);
         }
         } else {
             concreteClass.showAlert("No row selected/Context Error",event);
@@ -197,16 +191,21 @@ public class StaffAppointmentController implements Initializable {
 
     public void addAppointment(TableView<StaffAppointmentController.Pets> tableView,ActionEvent event) {
         StaffAppointmentController.Pets selectedPet = tableView.getSelectionModel().getSelectedItem();
-        if (selectedPet != null && datePicker.getValue()!=null && timeMenu.getText()!="Time" ) {
-            String ownerID=DataBase.getPatientID(selectedPet.getName().trim()).trim();
-            String staffID= LogController.activeID;
-            String date=datePicker.getValue().toString();
-            String time=timeMenu.getText();
-            String info=infoField.getText();
-            String petName=selectedPet.getPname();
+        if (selectedPet != null && datePicker.getValue()!=null && !timeMenu.getText().equals("Time") ) {
+            if(datePicker.getValue().isAfter(LocalDate.now())) {
+                String ownerID = DataBase.getPatientID(selectedPet.getName().trim()).trim();
+                String staffID = LogController.activeID;
+                String date = datePicker.getValue().toString();
+                String time = timeMenu.getText();
+                String info = infoField.getText();
+                String petName = selectedPet.getPname();
 
-            DataBase.addAppointment(ownerID,staffID, date, time,info, petName);
-            refresh();
+                DataBase.addAppointment(ownerID, staffID, date, time, info, petName);
+                refresh();
+            }
+            else{
+                concreteClass.showAlert("Date can be selected only after today.",event);
+            }
 
         } else {
             concreteClass.showAlert("No row selected",event);
