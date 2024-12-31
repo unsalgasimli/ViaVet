@@ -215,13 +215,15 @@ public class PatientAppointmentController implements Initializable {
 
     private void setAppStatus(TableView<Appointment> appointmentTable, int status_id, ActionEvent event) {
         PatientAppointmentController.Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
-        if (selectedAppointment != null && selectedAppointment.getStatus().equals("Proposed")) {
+        if (selectedAppointment != null && selectedAppointment.getStatus().equals("Scheduled")) {
             DataBase.setAppointmentStatus(selectedAppointment.getDate(), selectedAppointment.getTime(), status_id);
             refresh();
         }else{
             concreteClass.showAlert("No row selected/Syntax error",event);
         }
     }
+
+
 
 
     public void showDetails(TableView<Appointment> appointmentTable, ActionEvent event) {

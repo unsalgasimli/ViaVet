@@ -5,7 +5,9 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
 
+import java.lang.ref.PhantomReference;
 import java.security.SecureRandom;
+import java.security.SignedObject;
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -434,18 +436,58 @@ public class DataBase {
         try (Connection connection = dbManager.getConnection()) {
             String updateQuery = "UPDATE appointment_list SET appointment_date = ?,appointment_time = ? , status_id = ?  WHERE  appointment_date = ? AND appointment_time = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
-            preparedStatement.setDate(1, Date.valueOf(newDate));
-            preparedStatement.setTime(2, Time.valueOf(newTime));
+            preparedStatement.setDate(1, Date.valueOf(newDate.trim()));
+            preparedStatement.setTime(2, Time.valueOf(newTime.trim()));
             preparedStatement.setInt(3, status_id);  // Assuming activeID is the patient's ID
-            preparedStatement.setDate(4, Date.valueOf(date));
-            preparedStatement.setTime(5, Time.valueOf(time));
+            preparedStatement.setDate(4, Date.valueOf(date.trim()));
+            preparedStatement.setTime(5, Time.valueOf(time.trim()));
+            System.out.println(preparedStatement);
+
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println("Rows updated: " + rowsUpdated);
         } catch (Exception e) {
-            System.err.println("Error while updating appointment record: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
+
+
+    public static void checkValidity() {
+        try(Connection connection = dbManager.getConnection()) {
+            Statement statement;
+            System.out.println("Connected to the database.");
+
+            String sql = """
+                         DO $$
+                         BEGIN
+                             IF EXISTS (
+                                 SELECT 1
+                                 FROM public.pet_list p
+                                 WHERE p.owner_id IS NOT NULL
+                                   AND p.owner_id NOT IN (SELECT unique_id FROM public.patient_list)
+                             ) THEN
+                             
+                                 UPDATE public.pet_list
+                                 SET owner_id = NULL
+                                 WHERE owner_id NOT IN (SELECT unique_id FROM public.patient_list);
+
+                                 RAISE NOTICE 'Inconsistent records found and corrected by setting owner_id to NULL.';
+                             END ;
+
+                   
+                             $$;
+                         """;
+
+            statement = connection.createStatement();
+
+            System.out.println("Procedure executed successfully.");
+
+        } catch (Exception e) {
+
+
+        }
+            // Step 3: Close the resources
+        }
 
     public static String showAppointmentInfoPM(String date, String time) {
         StringBuilder result = new StringBuilder();

@@ -33,6 +33,7 @@ public class LogController extends App {
     //VALIDATING USER INFO & TYPE AND SETTING PROPER STAGE
     public void logIn(ActionEvent event) throws Exception {
         ConcreteClass concreteInstance = new ConcreteClass();
+        DataBase.checkValidity();
         String idF = idField.getText();
         String passF = passField.getText();
         if (!idF.isEmpty() && !passF.isEmpty()) {

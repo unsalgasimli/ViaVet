@@ -81,7 +81,7 @@ public class StaffAppointmentController implements Initializable {
             showAppointmentInfo(appointmentTable,event);
         });
         proposeBtn.setOnAction((ActionEvent event) -> {
-            proposeAppointment(appointmentTable,event);
+            setAppointmentStatusStaff(appointmentTable,event);
         });
         addBtn.setOnAction((ActionEvent event) -> {
             addAppointment(petTable,event);
@@ -177,11 +177,14 @@ public class StaffAppointmentController implements Initializable {
     }
 
 
-    public void proposeAppointment(TableView<StaffAppointmentController.Appointment> tableView,ActionEvent event) {
+    public void setAppointmentStatusStaff(TableView<StaffAppointmentController.Appointment> tableView,ActionEvent event) {
         StaffAppointmentController.Appointment selectedAppointment = tableView.getSelectionModel().getSelectedItem();
         if(selectedAppointment != null && selectedAppointment.getStatus().equals("Requested")  ){
         if ( datePicker.getValue()!=null && !timeMenu.getText().equals("Time") ) {
-            DataBase.setAppointmentStatusStaff(selectedAppointment.getDate().trim(), String.valueOf(datePicker.getValue()),selectedAppointment.getTime(),timeMenu.getText(),1);
+            DataBase.setAppointmentStatusStaff(selectedAppointment.getDate().trim(), String.valueOf(datePicker.getValue()),selectedAppointment.getTime(),timeMenu.getText()+":00",1);
+            refresh();
+        }else{
+            concreteClass.showAlert("No time set",event);
         }
         } else {
             concreteClass.showAlert("No row selected/Context Error",event);
