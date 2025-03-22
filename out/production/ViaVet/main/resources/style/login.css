@@ -1,70 +1,56 @@
-/* Fullscreen background for the login page */
 #login-pane {
     -fx-background-color: transparent;
     -fx-alignment: center;
-
 }
 
-/* Main container for the login form */
 #vbox {
     -fx-border-radius: 15px;
-    -fx-border-color: #FF4ED7; /* Neon pink to match the theme */
-    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
+    -fx-border-color: #FF4ED7;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10);
     -fx-pref-width: 45em;
     -fx-max-width: 45em;
-    -fx-min-width: 30em; /* Ensure minimum width for responsiveness */
+    -fx-min-width: 30em;
     -fx-pref-height: 50em;
     -fx-max-height: 50em;
-    -fx-min-height: 40em; /* Adjusted minimum height */
+    -fx-min-height: 40em;
     -fx-padding: 2em;
     -fx-alignment: center;
-
 }
 
-/* Hover effect for vbox */
 #vbox:hover {
-    -fx-border-radius: 15px;
     -fx-border-width: 5px;
-    -fx-border-color: #FF79F1; /* Subtle brighter pink on hover */
+    -fx-border-color: #FF79F1;
 }
 
-/* Input field styling */
 #input-field {
-    -fx-padding: 12px 20px; /* Adjust padding for better proportion */
-    -fx-pref-height: 4em; /* Reduced height */
+    -fx-padding: 12px 20px;
+    -fx-pref-height: 4em;
     -fx-min-height: 3.5em;
     -fx-pref-width: 32em;
     -fx-min-width: 10em;
-   /* -fx-background-color: rgba(255, 255, 255, 0.1); /* Slight white transparent background */
-
     -fx-background-color: transparent;
     -fx-border-radius: 25px;
-    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-border-color: #FF79F1;
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
-    -fx-font-size: 14px; /* Adjusted font size */
-    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
+    -fx-font-size: 14px;
+    -fx-transition: all 0.3s ease;
 }
 
-/* Hover effect for input fields */
 #input-field:hover {
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
-    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-border-color: #FF4ED7;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 
-/* Focus effect for input fields */
 #input-field:focused {
-    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
+    -fx-border-color: #D44DFF;
     -fx-border-width: 3px;
-    -fx-border-radius: 25px; /* Fixed border radius */
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 
-/* Help button styling */
 #helpBtn {
     -fx-background-color: transparent;
     -fx-border-radius: 15px;
@@ -73,19 +59,18 @@
 }
 
 #helpBtn:hover {
-    -fx-text-fill: #FF79F1; /* Change color to match the theme */
+    -fx-text-fill: #FF79F1;
 }
 
-/* Login button styling */
 #logBtn {
     -fx-background-radius: 25;
     -fx-font-family: "Constantia";
     -fx-font-size: 1.5em;
-    -fx-background-color: #FF4ED7; /* Neon pink background */
+    -fx-background-color: #FF4ED7;
     -fx-opacity: 0.9;
     -fx-text-fill: white;
-    -fx-pref-height: 3.5em; /* Adjusted height */
-    -fx-pref-width: 15em; /* Adjusted width for better proportions */
+    -fx-pref-height: 3.5em;
+    -fx-pref-width: 15em;
 }
 
 #logBtn:hover {
@@ -96,7 +81,6 @@
     -fx-text-fill: white;
 }
 
-/* Signup button styling */
 #signupBtn {
     -fx-text-fill: white;
     -fx-background-color: transparent;
@@ -105,27 +89,23 @@
 }
 
 #signupBtn:hover {
-    -fx-text-fill: #FF79F1; /* Hover color to match theme */
+    -fx-text-fill: #FF79F1;
 }
 
-/* Title text styling */
 #text {
     -fx-font-family: "Trebuchet MS";
     -fx-font-size: 5em;
-    -fx-fill: #FF4ED7; /* Brighter pink */
+    -fx-fill: #FF4ED7;
     -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 10, 0, 0, 5);
     -fx-text-origin: center;
 }
 
-#text:hover{
+#text:hover {
     -fx-font-size: 5.5em;
-    -fx-fill: #ff3bc1; /* Brighter pink */
+    -fx-fill: #ff3bc1;
     -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.6), 15, 0.2, 0, 7);
-
-
 }
 
-/* General hover effect for buttons */
 button:hover {
     -fx-cursor: hand;
 }

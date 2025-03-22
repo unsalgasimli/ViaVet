@@ -3,20 +3,19 @@
     -fx-background-color: transparent;
     -fx-border-radius: 25;
     -fx-border-width: 2px;
-    -fx-border-color: #1b0729;;
+    -fx-border-color: #1b0729;
     -fx-min-width: 45em;
     -fx-pref-width: 120em;
     -fx-max-width: 120em;
     -fx-min-height: 50em;
     -fx-pref-height: 80em;
     -fx-max-height: 80em;
-
 }
 
 #botHbox {
-    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1; /* Top transparent, others pink */
-    -fx-background-color: rgba(0, 0, 0, 0.5); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10); /* Glow effect */
+    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 10);
     -fx-background-radius: 0 0 25 25;
     -fx-border-radius: 0 0 25 25;
     -fx-min-width: 5em;
@@ -25,9 +24,8 @@
     -fx-min-height: 40em;
     -fx-pref-height: 75em;
     -fx-max-height: 75em;
-    -fx-border-insets: -0.15em; /* Border overlaps the content */
+    -fx-border-insets: -0.15em;
 }
-
 
 #rightVbox {
     -fx-min-width: 15em;
@@ -38,7 +36,6 @@
     -fx-max-height: 60em;
     -fx-border-radius: 25;
 }
-
 
 .table-view {
     -fx-background-radius: 10;
@@ -52,35 +49,24 @@
 
 .table-view.column-header {
     -fx-background-radius: 10;
-    -fx-border-radius: 10
+    -fx-border-radius: 10;
 }
 
 #table-view .column-header .label {
     -fx-text-fill: white;
 }
 
-.table-view.column-header-background.filler {
-    -fx-background-color: transparent;
-}
-
-.table-view.corner {
+.table-view.column-header-background.filler,
+.table-view.corner,
+.table-view .column-header,
+.table-view.column-header-background {
     -fx-background-color: transparent;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 90, 215, 0.8), 10, 0, 0, 4); /* Glow effect */
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-effect: dropshadow(gaussian, rgba(255, 90, 215, 0.8), 10, 0, 0, 4);
     -fx-background-radius: 10 10 0 0;
-
-
-}
-
-.table-view .column-header {
-    -fx-background-color: transparent;
-}
-
-.table-view.column-header-background {
-    -fx-background-color: transparent;
 }
 
 .table-view .table-cell {
@@ -93,25 +79,24 @@
     -fx-border-color: #353141;
     -fx-border-radius: 5;
     -fx-text-background-color: #6216fa;
-    -fx-scale-y: 1.05;
     -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 
 .table-row-cell:odd {
     -fx-background-color: #93f9b911;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
+    -fx-padding: 0;
 }
 
 .table-row-cell:odd:hover {
     -fx-background-color: #E0E8EA;
-
 }
 
 .table-row-cell:even {
     -fx-background-color: #1dbbdd11;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
+    -fx-padding: 0;
 }
 
 .table-row-cell:even:hover {
@@ -156,18 +141,16 @@
 }
 
 #tableColumn.column-header {
-
     -fx-min-height: 2em;
     -fx-pref-height: 3.5em;
     -fx-max-height: 3.5em;
 }
-#tableColumn{
 
+#tableColumn {
     -fx-min-height: 2em;
     -fx-pref-height: 3em;
     -fx-max-height: 3em;
 }
-
 
 #descField {
     -fx-min-width: 5em;
@@ -176,39 +159,33 @@
     -fx-min-height: 1em;
     -fx-pref-height: 4em;
     -fx-max-height: 4em;
-
-
-    /*   -fx-background-color: transparent; */
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-border-color: #FF79F1;
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
-    -fx-font-size: 14px; /* Adjusted font size */
-    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
-
-
-    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
+    -fx-font-size: 14px;
+    -fx-transition: all 0.3s ease;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2);
 }
 
-
 #descField:hover {
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-color: #FF4ED7;
     -fx-background-radius: 25px;
-    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
-    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-border-radius: 25px;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 
 #descField:focused {
-    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
-    -fx-background-color: rgba(0, 0, 0, 0.1); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-border-color: #D44DFF;
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0);
     -fx-border-width: 3px;
     -fx-background-radius: 25px;
-    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-border-radius: 25px;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
@@ -220,57 +197,51 @@
     -fx-min-height: 1em;
     -fx-pref-height: 4em;
     -fx-max-height: 4em;
-
-    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-border-color: #FF79F1;
     -fx-border-radius: 5px;
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
-    -fx-font-size: 14px; /* Adjusted font size */
-    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
+    -fx-font-size: 14px;
+    -fx-transition: all 0.3s ease;
     -fx-background-color: transparent;
-
-
 }
 
 #datePicker .text-field {
     -fx-alignment: center;
     -fx-text-fill: white;
-    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2);
 }
 
 #datePicker:hover {
-    -fx-border-color: transparent; /* Brighter pink for hover */
+    -fx-border-color: transparent;
     -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
-
-
+    -fx-background-radius: 25px 0 0 25px;
 }
 
 #datePicker:hover .text-field {
-    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-border-color: #FF4ED7;
     -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+    -fx-background-radius: 25px 0 0 25px;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 
 #datePicker:focused {
     -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
-
-    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-background-radius: 25px 0 0 25px;
+    -fx-border-color: #D44DFF;
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0);
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 
 #datePicker:focused .text-field {
-    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+    -fx-border-color: #D44DFF;
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0);
     -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
+    -fx-background-radius: 25px 0 0 25px;
     -fx-scale-x: 1;
     -fx-scale-y: 1;
 }
@@ -284,11 +255,10 @@
 }
 
 #menuBtn .menu-item {
-
     -fx-alignment: center;
     -fx-text-fill: white;
-    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2);
 }
 
 #menuBtn {
@@ -298,27 +268,26 @@
     -fx-min-height: 1em;
     -fx-pref-height: 4em;
     -fx-max-height: 4em;
-
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-border-color: #FF4ED7;
     -fx-border-radius: 5px;
     -fx-alignment: center;
     -fx-text-fill: white;
-    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2); /* Glow effect */
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2);
 }
 
 #menuBtn:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-border-color: #FF4ED7;
     -fx-border-radius: 25px;
-    -fx-background-radius: 25px; /* Fixed border radius */
+    -fx-background-radius: 25px;
     -fx-scale-x: 1.15;
     -fx-scale-y: 1.15;
 }
 
 #menuBtn:focused {
-    -fx-scale-y: 1;
     -fx-scale-x: 1;
+    -fx-scale-y: 1;
     -fx-background-radius: 25;
     -fx-border-radius: 25;
 }
@@ -330,22 +299,19 @@
     -fx-min-height: 1em;
     -fx-pref-height: 3em;
     -fx-max-height: 3em;
-
-
     -fx-border-radius: 5px;
     -fx-alignment: center;
     -fx-text-fill: white;
     -fx-background-color: #f714ff;
     -fx-opacity: 0.5;
-
 }
 
 #selectionBtn:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2); /* Glow effect */
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2);
+    -fx-border-color: #FF4ED7;
     -fx-border-radius: 25px;
-    -fx-background-radius: 25px; /* Fixed border radius */
+    -fx-background-radius: 25px;
     -fx-scale-x: 1;
     -fx-scale-y: 1.15;
 }
@@ -354,205 +320,133 @@
     -fx-background-radius: 25 25 0 0;
     -fx-background-color: transparent;
     -fx-min-width: 45em;
-    -fx-pref-width: 120em; /* Adjust to your layout needs */
+    -fx-pref-width: 120em;
     -fx-max-width: 120em;
     -fx-min-height: 3em;
     -fx-pref-height: 5em;
     -fx-max-height: 5em;
-    -fx-border-color: #FF4ED7 #FF4ED7 transparent #FF4ED7; /* Top transparent, others pink */
-    -fx-border-insets: -0.15em; /* Border overlaps the content */
+    -fx-border-color: #FF4ED7 #FF4ED7 transparent #FF4ED7;
+    -fx-border-insets: -0.15em;
     -fx-border-radius: 25 25 0 0;
 }
 
-/* Hover effect for #botHbox and #topHbox */
-/* Hover effect for #botHbox with transparent top border */
 #borderPane:hover #botHbox {
-
-    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1; /* Top transparent, others pink */
-    -fx-border-width: 3px; /* Uniform border width */
-    -fx-border-radius: 0 0 25 25; /* Rounded bottom corners */
+    -fx-border-color: transparent #FF79F1 #FF79F1 #FF79F1;
+    -fx-border-width: 3px;
+    -fx-border-radius: 0 0 25 25;
 }
 
-/* Hover effect for #topHbox with transparent bottom border */
 #borderPane:hover #topHbox {
-
-    -fx-border-color: #FF79F1 #FF79F1 transparent #FF79F1; /* Bottom transparent, others pink */
-    -fx-border-width: 3px; /* Uniform border width */
-    -fx-border-radius: 25 25 0 0
+    -fx-border-color: #FF79F1 #FF79F1 transparent #FF79F1;
+    -fx-border-width: 3px;
+    -fx-border-radius: 25 25 0 0;
 }
 
-
-#adminTopBtnLeft, #adminTopBtnCenter, #adminTopBtnRight {
-    -fx-background-color: rgba(0, 0, 0, 0.7); /* Transparent dark background */
-    -fx-text-fill: white; /* Default text color */
-    -fx-background-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0; /* Corner radii per button */
-    -fx-border-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0; /* Same corner radii */
+#adminTopBtnLeft,
+#adminTopBtnCenter,
+#adminTopBtnRight {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-text-fill: white;
+    -fx-background-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0;
+    -fx-border-radius: 25 0 0 0, 0 0 0 0, 0 25 0 0;
     -fx-min-height: 3em;
     -fx-pref-height: 5em;
     -fx-max-height: 5em;
     -fx-min-width: 15em;
     -fx-pref-width: 121em;
-    -fx-cursor: hand; /* Pointer cursor */
-    -fx-effect: none; /* No glow by default */
-    -fx-transition: all 0.3s ease-in-out; /* Smooth transitions */
+    -fx-cursor: hand;
+    -fx-effect: none;
+    -fx-transition: all 0.3s ease-in-out;
 }
 
-/* Hover effect: subtle transparency and gradient */
-#adminTopBtnLeft:hover, #adminTopBtnCenter:hover, #adminTopBtnRight:hover {
-    -fx-background-color: linear-gradient(to bottom, rgba(255, 79, 241, 0.4), rgba(255, 78, 215, 0.2)); /* Subtle gradient */
-    -fx-text-fill: rgba(255, 255, 255, 0.85); /* Slightly brighter text */
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 4, 0.2, 0, 1); /* Soft glow */
+#adminTopBtnLeft:hover,
+#adminTopBtnCenter:hover,
+#adminTopBtnRight:hover {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 79, 241, 0.4), rgba(255, 78, 215, 0.2));
+    -fx-text-fill: rgba(255, 255, 255, 0.85);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 4, 0.2, 0, 1);
 }
 
-/* Text scaling on hover for emphasis */
-#adminTopBtnLeft:hover .text, #adminTopBtnCenter:hover .text, #adminTopBtnRight:hover .text {
-    -fx-scale-x: 1.05; /* Gentle text scale */
-    -fx-scale-y: 1.05; /* Gentle text scale */
+#adminTopBtnLeft:hover .text,
+#adminTopBtnCenter:hover .text,
+#adminTopBtnRight:hover .text {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 
-/* Button-specific styles */
 #adminTopBtnLeft {
-    -fx-background-radius: 25 0 0 0; /* Top-left rounded */
-    -fx-border-radius: 25 0 0 0; /* Border matching background */
+    -fx-background-radius: 25 0 0 0;
+    -fx-border-radius: 25 0 0 0;
 }
 
 #adminTopBtnCenter {
-    -fx-background-radius: 0; /* Square button */
-    -fx-border-radius: 0; /* Matching square border */
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
 }
 
 #adminTopBtnRight {
-    -fx-background-radius: 0 25 0 0; /* Top-right rounded */
-    -fx-border-radius: 0 25 0 0; /* Border matching background */
+    -fx-background-radius: 0 25 0 0;
+    -fx-border-radius: 0 25 0 0;
 }
 
-
-
-#textField{
+#textField {
     -fx-min-width: 5em;
-    -fx-pref-width:25em;
+    -fx-pref-width: 25em;
     -fx-max-width: 25em;
     -fx-min-height: 1em;
-    -fx-pref-height:4em;
+    -fx-pref-height: 4em;
     -fx-max-height: 4em;
-
-
-    /*   -fx-background-color: transparent; */
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-border-color: #FF79F1; /* Bright pink border */
+    -fx-border-color: #FF79F1;
     -fx-font-family: "Segoe UI Black";
     -fx-text-fill: white;
-    -fx-font-size: 14px; /* Adjusted font size */
-    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
-
-
-    -fx-background-color: rgba(0, 0, 0, 0.7); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
+    -fx-font-size: 14px;
+    -fx-transition: all 0.3s ease;
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2);
 }
 
-
-#textField:hover{
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+#textField:hover {
+    -fx-border-color: #FF4ED7;
     -fx-background-radius: 25px;
-    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
-    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-border-radius: 25px;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
-#textField:focused{
-    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
-    -fx-background-color: rgba(0, 0, 0, 0.1); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
+
+#textField:focused {
+    -fx-border-color: #D44DFF;
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0);
     -fx-border-width: 3px;
     -fx-background-radius: 25px;
-    -fx-border-radius: 25px; /* Fixed border radius */
+    -fx-border-radius: 25px;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
-#datePicker{
+
+#AnyBtn {
     -fx-min-width: 5em;
-    -fx-pref-width:25em;
-    -fx-max-width: 25em;
-    -fx-min-height: 1em;
-    -fx-pref-height:4em;
-    -fx-max-height: 4em;
-
-    -fx-border-color: #FF79F1; /* Bright pink border */
-    -fx-border-radius: 5px;
-    -fx-font-family: "Segoe UI Black";
-    -fx-text-fill: white;
-    -fx-font-size: 14px; /* Adjusted font size */
-    -fx-transition: all 0.3s ease; /* Smooth hover/focus transition */
-    -fx-background-color: transparent;
-
-
-
-
-}
-
-#datePicker .text-field {
-    -fx-alignment: center;
-    -fx-text-fill: white;
-    -fx-background-color: rgba(0, 0, 0, 0.6); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 5, 0, 0, 2); /* Glow effect */
-}
-#datePicker:hover{
-    -fx-border-color: transparent; /* Brighter pink for hover */
-    -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
-
-
-}
-#datePicker:hover .text-field {
-    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
-    -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px;  /* Fixed border radius */
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-}
-#datePicker:focused{
-    -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
-
-    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-}
-#datePicker:focused .text-field{
-    -fx-border-color: #D44DFF; /* Brighter purple-pink focus color */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 0, 0, 0, 0); /* Glow effect */
-    -fx-border-radius: 25px 0 0 25px;
-    -fx-background-radius: 25px 0 0 25px; /* Fixed border radius */
-    -fx-scale-x: 1;
-    -fx-scale-y: 1;
-}
-
-
-#AnyBtn{
-    -fx-min-width: 5em;
-    -fx-pref-width:14em;
+    -fx-pref-width: 14em;
     -fx-max-width: 14em;
     -fx-min-height: 1em;
-    -fx-pref-height:3em;
+    -fx-pref-height: 3em;
     -fx-max-height: 3em;
-
-
     -fx-border-radius: 5px;
     -fx-alignment: center;
     -fx-text-fill: white;
     -fx-background-color: #f714ff;
     -fx-opacity: 0.5;
-
 }
-#AnyBtn:hover{
-    -fx-background-color: rgba(0, 0, 0, 0.4); /* Slightly darker transparent background */
-    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2); /* Glow effect */
-    -fx-border-color: #FF4ED7; /* Brighter pink for hover */
+
+#AnyBtn:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(255, 78, 215, 0.8), 15, 0, 0, 2);
+    -fx-border-color: #FF4ED7;
     -fx-border-radius: 25px;
-    -fx-background-radius: 25px;  /* Fixed border radius */
+    -fx-background-radius: 25px;
     -fx-scale-x: 1;
     -fx-scale-y: 1.15;
 }

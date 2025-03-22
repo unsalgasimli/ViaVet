@@ -15,7 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Rectangle2D?>
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../resources/style/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.unsalgasimli.app.vet.staff.StaffHistoryController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../resources/style/app.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.staff.StaffHistoryController">
    <children>
       <StackPane id="stackPane" maxHeight="864.0" maxWidth="1536.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
